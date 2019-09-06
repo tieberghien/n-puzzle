@@ -6,8 +6,14 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/06 14:57:32 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:53:17 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef N_PUZZLE_H
+# define N_PUZZLE_H
+# define USAGE "Usage: ./solver <sourcefile>"
+# include <fcntl.h>
+# include "libft.h"
 
+#endif
