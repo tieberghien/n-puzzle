@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/06 16:53:17 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/08 21:07:53 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 # define USAGE "Usage: ./solver <sourcefile>"
 # include <fcntl.h>
 # include "libft.h"
+
+int read_file(int fd);
 
 #endif

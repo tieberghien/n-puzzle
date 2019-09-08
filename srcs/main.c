@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/06 16:53:16 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/08 21:17:36 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,18 @@ int		main(int ac, char **av)
 
 	if (ac < 2)
 		return_failure(USAGE, NULL);
-	if ((fd = open(av[2], O_RDONLY)) == -1)
+	if ((fd = open(av[1], O_RDONLY)) == -1)
 	{
 		ft_putstr_fd("Can't read source file ", 2);
 		ft_putstr_fd(av[1], 2);
 		ft_putchar_fd('\n', 2);
 		return (-1);
 	}
-	/*
-	if (!read_file(fd, &a))
+	if (!read_file(fd))
 	{
 		ft_putstr_fd("SYNTAX ERROR\n", 2);
 		return (-1);
 	}
-	*/
 	close(fd);
 	return (0);
 }
