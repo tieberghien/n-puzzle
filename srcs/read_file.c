@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/09 15:48:28 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/09 16:38:47 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,33 @@ static int	get_n(char *input)
 	return (n);
 }
 
-static char *check_puzzle(char **tab, int n)
+static int *check_puzzle(char **tab, int i, int n)
 {
-	(void)n;
-	return (*tab);
+	int		j;
+	int		k;
+	int		*puzzle;
+
+	k = 0;
+	if (!(puzzle = (int*)malloc(sizeof(int) * (n * n) + 1)))
+		return (NULL);
+	i++;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][0] == '\n')
+				continue ;
+			if (ft_isdigit(tab[i][j]))
+			{
+				puzzle[k] = ft_atoi(&tab[i][j]);
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (puzzle);
 }
 
 char		*get_input(int fd)
@@ -100,7 +123,7 @@ int			read_file(int fd)
 	}
 	if (n < 2)
 		return_failure("N needs to be at least 3x3.", NULL);
-	if (!check_puzzle(tab, j))
+	if (!check_puzzle(tab, j, n))
 		return (0);
 	return (1);
 }
