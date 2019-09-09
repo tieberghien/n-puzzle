@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/09 16:38:47 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/09 17:09:56 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,24 @@ static int *check_puzzle(char **tab, int i, int n)
 	while (tab[i])
 	{
 		j = 0;
-		while (tab[i][j])
+		while (tab[i][j] && k < (n * n))
 		{
-			if (tab[i][0] == '\n')
-				continue ;
 			if (ft_isdigit(tab[i][j]))
 			{
 				puzzle[k] = ft_atoi(&tab[i][j]);
+				if (puzzle[k] == 0)
+					puzzle[k] = -1;
 				k++;
 			}
 			j++;
 		}
 		i++;
+	}
+	k = 0;
+	while (k < n*n)
+	{
+		dprintf(2, "%d,", puzzle[k]);
+		k++;
 	}
 	return (puzzle);
 }
