@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/08 21:57:16 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/09 15:48:28 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,30 @@ int		is_comment(char *line)
 	return (0);
 }
 
+static int	get_n(char *input)
+{
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	while (input[i] && !ft_isdigit(input[i]) && input[i] != '-')
+		i++;
+	if (i < ft_strlen(input))
+		n = ft_atoi(input + i);
+	while (input[i] == ' ' || input[i] == '\t')
+		i++;
+	if (i + ft_intlen(n, 10) < ft_strlen(input))
+		dprintf(2, "EH\n");
+	return (n);
+}
+
+static char *check_puzzle(char **tab, int n)
+{
+	(void)n;
+	return (*tab);
+}
+
 char		*get_input(int fd)
 {
 	char	buff[4096];
@@ -34,7 +58,7 @@ char		*get_input(int fd)
 	{
 		ft_bzero(buff, 4096);
 		read(fd, buff, 1);
-		if (buff[0] == '\n')
+		if (buff[0] == '\0')
 			break ;
 		tmp = cmd;
 		cmd = ft_strjoin(cmd, buff);
@@ -46,21 +70,37 @@ char		*get_input(int fd)
 int			read_file(int fd)
 {
 	int		i;
+	int		j;
+	int		n;
 	char	*line;
+	char	**tab;
 
-	i = 0;
-	while ((line = get_input(fd)) != NULL)
+	i = -1;
+	n = 0;
+	line = get_input(fd);
+	if (*line == 0)
 	{
-		if (is_comment(line))
-			continue ;
-		//	if (!(get_line(&line, i)) ; stockage du puzzle
-		//		break ;
+		free(line);
+		return_failure("Empty map.", NULL);
 	}
-	/**
-	  conditions a remplir (taille puzzle + cases puzzle)
-	  if (!check_n(a) || !check_puzzle(a))
-	  return (0);
-	 **/
-	//	clean_lines(a); rm comments;
+	if ((tab = ft_strsplit(line, '\n')) == NULL)
+	{
+		free(line);
+		return_failure("Could mot read input.", NULL);
+	}
+	while (tab[++i])
+	{
+		if (tab[i][0] == '#' && tab[i][0] == '\n')
+			continue ;
+		if (n == 0)
+		{
+			n = get_n(tab[i]);
+			j = i;
+		}
+	}
+	if (n < 2)
+		return_failure("N needs to be at least 3x3.", NULL);
+	if (!check_puzzle(tab, j))
+		return (0);
 	return (1);
 }
