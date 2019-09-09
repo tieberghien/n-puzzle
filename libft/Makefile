@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: etieberg <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/08 20:01:36 by etieberg          #+#    #+#              #
-#    Updated: 2018/11/06 15:37:42 by etieberg         ###   ########.fr        #
+#    Updated: 2019/09/09 15:56:41 by tmerli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,9 @@ SRC = ft_memset.c				\
 	  ft_free.c					\
 	  ft_stradd.c				\
 	  get_next_line.c			\
-	  ft_get_input.c
+	  ft_get_input.c			\
+	  ft_abs.c					\
+	  ft_in_interval.c			\
 
 OBJ = $(SRC:.c=.o)
 CC = gcc
