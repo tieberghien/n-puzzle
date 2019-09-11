@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   n_puzzle.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/08 22:32:01 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/11 17:33:56 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,39 @@
 # define N_PUZZLE_H
 # define USAGE "Usage: ./solver <sourcefile>"
 # include <fcntl.h>
-# include "libft.h"
+# include "../libft/includes/libft.h"
+# include <stdio.h>
 
-typedef struct	s_puzzle
+typedef struct	s_node
 {
-	size_t		n;
-	int			puzzle[n*n];
-}				t_puzzle;
+	int				g_score;
+	int				h_score;
+	int				*puzzle;
+	struct s_node	*next;
+	struct s_node	*from;
+}				t_node;
 
-typedef struct	s_sets
+typedef struct	s_set
 {
-	t_node		*open;
-	t_node		*closed;
-	size_t		exp_order;  // expansion order (g)
-	size_t		value;	// heuristic value / estimation cost (h)
-	size_t		cost;  // g + h = cost-so-far (f)
-}				t_sets;
+	t_node	*open;
+	t_node	*closed;
+	t_node	*path;
+	int		*goal;
+	int		open_size;
+	int		open_max_size;
+	int		closed_size;
+	int		size;
+	int		heuristic;
+}				t_set;
 
-int read_file(int fd);
+int				linear_conflict_manhattan(int *current, int *goal, int n);
+int				manhatan(int *current, int *goal, int n);
+int				hamming(int *current, int *goal, int n);
+int				read_file(int fd);
+void			get_coord(int place, int size, int *puzzle, int *x, int *y);
+t_node 			*get_next_step(t_set *set);
+int 			in_closed(int *puzzle, t_node *closed, int size);
+
+int				(*g_heuristic[3]) (int *current, int *goal, int n) = {linear_conflict_manhattan, manhatan, hamming};
 
 #endif
