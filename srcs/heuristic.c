@@ -6,24 +6,26 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:47:50 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/11 16:12:55 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/12 19:04:51 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../includes/n_puzzle.h"
 
-int	get_goal(int current, int *goal)
+int	find_goal(int current, int *goal)
 {
 	int i;
 
 	i = 0;
 	while (goal[i])
 	{
+	//	printf("current: %i\n", current);
 		if (goal[i] == current)
 			return (i);
 		i++;
 	}
+	//printf("error heuristic\n");
 	return (0);
 }
 
@@ -39,7 +41,7 @@ int	hamming(int *current, int *goal, int n)
 	{
 		if (current[i] != -1)
 		{
-			j = get_goal(current[i], goal);
+			j = find_goal(current[i], goal);
 			if (j != i)
 				h += 1;
 		}
@@ -60,7 +62,7 @@ int	manhatan(int *current, int *goal, int n)
 	{
 		if (current[i] != -1)
 		{
-			j = get_goal(current[i], goal);
+			j = find_goal(current[i], goal);
 			h += ft_abs(j % n - i % n) + ft_abs(j / n - i / n);
 		}
 		i++;
@@ -96,15 +98,14 @@ int	linear_conflict_manhattan(int *current, int *goal, int n)
 	int j;
 	int coord[4];
 	int h = manhatan(current, goal, n);
-	int *current_cpy = ft_memcpy(ft_memalloc(n * n * sizeof(int) + sizeof(int)),
-								 current, n * n * sizeof(int) + sizeof(int));
+	int *current_cpy = copy_puzzle(current, n);
 	int current_goal;
 
 	while (current_cpy[++i])
 	{
 		if (current_cpy[i] != -1)
 		{
-			current_goal = get_goal(current_cpy[i], goal);
+			current_goal = find_goal(current_cpy[i], goal);
 			coord[0] = i % n;
 			coord[1] = i / n;
 			coord[2] = current_goal % n;
@@ -112,7 +113,7 @@ int	linear_conflict_manhattan(int *current, int *goal, int n)
 			j = i;
 			while (current_cpy[++j])
 			{
-				if (current_cpy[j] != -1 && conflict(coord, j, get_goal(current_cpy[j], goal), n))
+				if (current_cpy[j] != -1 && conflict(coord, j, find_goal(current_cpy[j], goal), n))
 				{
 					h += 2;
 					current_cpy[j] = -1;

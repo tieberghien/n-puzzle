@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/11 17:33:56 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/12 17:43:36 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ int				manhatan(int *current, int *goal, int n);
 int				hamming(int *current, int *goal, int n);
 int				read_file(int fd);
 void			get_coord(int place, int size, int *puzzle, int *x, int *y);
-t_node 			*get_next_step(t_set *set);
-int 			in_closed(int *puzzle, t_node *closed, int size);
-
-int				(*g_heuristic[3]) (int *current, int *goal, int n) = {linear_conflict_manhattan, manhatan, hamming};
+t_node			*get_next_step(t_set *set);
+int				in_closed(int *puzzle, t_node *closed, int size);
+int				*get_goal(int size);
+void			a_star(int *puzzle, int size, int heuristic);
+void print_puzzle(int *puzzle, int size);
+int *copy_puzzle(int *puzzle, int size);
 
 #endif

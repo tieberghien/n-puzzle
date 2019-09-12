@@ -6,25 +6,30 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/12 12:11:00 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/12 19:04:28 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/n_puzzle.h"
 
+int (*g_heuristic[3])(int *current, int *goal, int n) =
+	{linear_conflict_manhattan, manhatan, hamming};
+
 /*
 ** Initialize the set with the right value, mem allocation etc..
 */
-
-void init_set(t_set *set, int *puzzle, int size, int heuristic)
+void init_set(t_set *set, int *puzzle, int size, int heuristic, t_node **current)
 {
-	set->goal = get_goal(size); // <----  TO DO int *get_goal(int size) : get the array corresponding to the goal (snake solution) of the puzzle
+	set->goal = get_goal(size);
+	print_puzzle(set->goal, size);
 	set->size = size;
 	set->heuristic = heuristic;
-	set->closed = ft_malloc_check(sizeof(t_node));
-	set->closed->puzzle = puzzle;
-	set->closed->g_score = 0;
-	set->closed->next = NULL;
+	*current = ft_malloc_check(sizeof(t_node));
+	current[0]->puzzle = puzzle;
+	current[0]->g_score = 0;
+	current[0]->next = NULL;
+	current[0]->from = NULL;
+	set->closed = NULL;
 	set->open = NULL;
 }
 
@@ -43,8 +48,7 @@ void add_to_list(int *puzzle, t_node *current, t_set *set)
 		new->g_score = current->g_score + 1;
 		new->h_score = (*g_heuristic[set->heuristic])(puzzle, set->goal, set->size);
 		new->from = current;
-		new->puzzle = ft_memcpy(ft_memalloc(set->size * set->size * sizeof(int) + sizeof(int)),
-								puzzle, set->size * set->size * sizeof(int) + sizeof(int));
+		new->puzzle = copy_puzzle(puzzle, set->size);
 		new->next = set->open;
 		set->open = new;
 		set->open_size += 1;
@@ -57,10 +61,11 @@ void add_to_list(int *puzzle, t_node *current, t_set *set)
 */
 void set_new_puzzle(int replaced, t_node *current, t_set *set)
 {
-	int puzzle[set->size + 1];
+	int puzzle[set->size * set->size + 1];
 	int i;
 
-	puzzle[set->size] = 0;
+	puzzle[set->size * set->size] = 0;
+	i= 0;
 	while (current->puzzle[i])
 	{
 		if (current->puzzle[i] == replaced)
@@ -69,8 +74,9 @@ void set_new_puzzle(int replaced, t_node *current, t_set *set)
 			puzzle[i] = replaced;
 		else
 			puzzle[i] = current->puzzle[i];
+		i++;
 	}
-	set_new_node(puzzle, current, set);
+	add_to_list(puzzle, current, set);
 }
 
 /*
@@ -87,22 +93,20 @@ void fill_open(t_set *set, t_node *current)
 	if (coord[0] - 1 >= 0)
 		set_new_puzzle(current->puzzle[coord[0] - 1 + coord[1] * set->size], current, set);
 	if (coord[1] + 1 < set->size)
-		set_new_puzzle(current->puzzle[coord[0] + coord[1] + 1 * set->size], current, set);
-	if (coord[1] - 1 < set->size)
-		set_new_puzzle(current->puzzle[coord[0] + coord[1] - 1 * set->size], current, set);
+		set_new_puzzle(current->puzzle[coord[0] + (coord[1] + 1) * set->size], current, set);
+	if (coord[1] - 1 >= 0)
+		set_new_puzzle(current->puzzle[coord[0] + (coord[1] - 1) * set->size], current, set);
 }
 
 /*
 ** contain the whole algorithm
 */
-void Astar(int *puzzle, int size, int heuristic)
+void a_star(int *puzzle, int size, int heuristic)
 {
 	t_set set;
 	t_node *current;
 
-	init_set(&set, puzzle, size, heuristic);
-	current = set.closed;
-
+	init_set(&set, puzzle, size, heuristic, &current);
 	while (current)
 	{
 		fill_open(&set, current);
@@ -110,6 +114,15 @@ void Astar(int *puzzle, int size, int heuristic)
 		set.closed = current;
 		current = get_next_step(&set);
 	}
-	print_end(set); // <----  TO DO void print_end(set) : print the result
-	free_all(set);  // <---- TO DO 	void free_all(set)  : free all list, pointer etc.. of the set
+
+	printf("path:\n");
+	while (set.path)
+	{
+		print_puzzle(set.path->puzzle, size);
+		printf("\n");
+		set.path = set.path->from;
+	}
+	printf("end\n");
+	// print_end(set); // <----  TO DO void print_end(set) : print the result
+	// free_all(set);  // <---- TO DO 	void free_all(set)  : free all list, pointer etc.. of the set
 }

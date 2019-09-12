@@ -2,18 +2,15 @@
 
 int main(void)
 {
-	int current[10] = {4, 2, 5, 1, -1, 6, 3, 8, 7, 0};
-	int *goal = ft_malloc_check(9 * sizeof(int) + sizeof(int));
-	int i = 0;
 
-	while(current[i]){
-		goal[i] = current[i];
-		i++;
-	}
-	goal[i] = 0;
-	//printf("%i %i %i", linear_conflict_manhattan(current, goal, 3), manhatan(current, goal, 3), hamming(current, goal, 3));
+	int input[27] = {5,
+					 24, 4, 1, 11, 5,
+					 3, 18, 9, 20, 19,
+					 10, 15, 23, 12, 17,
+					 13, 21, 22, -1, 6,
+					 2, 16, 8, 14, 7, 0};
 
-	printf("%i", ft_memcmp(current, goal, 9 * sizeof(int) + sizeof(int)));
+	a_star(input, 5, 0);
 
 	return 0;
 }
