@@ -6,11 +6,15 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/11 17:59:47 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/12 12:11:00 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/n_puzzle.h"
+
+/*
+** Initialize the set with the right value, mem allocation etc..
+*/
 
 void init_set(t_set *set, int *puzzle, int size, int heuristic)
 {
@@ -24,7 +28,12 @@ void init_set(t_set *set, int *puzzle, int size, int heuristic)
 	set->open = NULL;
 }
 
-void set_new_node(int *puzzle, t_node *current, t_set *set)
+/*
+** If a puzzle configuration is not in the closed list,
+** it create a node, give it the right value (h score, gscore etc..)
+** put it in the open queue
+*/
+void add_to_list(int *puzzle, t_node *current, t_set *set)
 {
 	t_node *new;
 
@@ -43,7 +52,10 @@ void set_new_node(int *puzzle, t_node *current, t_set *set)
 	}
 }
 
-void ad_to_list(int replaced, t_node *current, t_set *set)
+/*
+** create the new puzzle config and send to the add_to _list func
+*/
+void set_new_puzzle(int replaced, t_node *current, t_set *set)
 {
 	int puzzle[set->size + 1];
 	int i;
@@ -61,21 +73,28 @@ void ad_to_list(int replaced, t_node *current, t_set *set)
 	set_new_node(puzzle, current, set);
 }
 
+/*
+** fill the open queue with the potential puzzle with the current node
+** thanks to the other last 2 functions
+*/
 void fill_open(t_set *set, t_node *current)
 {
 	int coord[2];
 
 	get_coord(-1, set->size, current->puzzle, &coord[0], &coord[1]);
 	if (coord[0] + 1 < set->size)
-		add_to_list(current->puzzle[coord[0] + 1 + coord[1] * set->size], current, set);
+		set_new_puzzle(current->puzzle[coord[0] + 1 + coord[1] * set->size], current, set);
 	if (coord[0] - 1 >= 0)
-		add_to_list(current->puzzle[coord[0] - 1 + coord[1] * set->size], current, set);
+		set_new_puzzle(current->puzzle[coord[0] - 1 + coord[1] * set->size], current, set);
 	if (coord[1] + 1 < set->size)
-		add_to_list(current->puzzle[coord[0] + coord[1] + 1 * set->size], current, set);
+		set_new_puzzle(current->puzzle[coord[0] + coord[1] + 1 * set->size], current, set);
 	if (coord[1] - 1 < set->size)
-		add_to_list(current->puzzle[coord[0] + coord[1] - 1 * set->size], current, set);
+		set_new_puzzle(current->puzzle[coord[0] + coord[1] - 1 * set->size], current, set);
 }
 
+/*
+** contain the whole algorithm
+*/
 void Astar(int *puzzle, int size, int heuristic)
 {
 	t_set set;

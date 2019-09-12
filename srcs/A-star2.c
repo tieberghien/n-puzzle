@@ -6,11 +6,15 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:38:08 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/11 17:55:32 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/12 12:02:13 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/n_puzzle.h"
+
+/*
+** Check if a configurtion of the n Puzzle is present in the closed list
+*/
 
 int in_closed(int *puzzle, t_node *closed, int size)
 {
@@ -25,6 +29,14 @@ int in_closed(int *puzzle, t_node *closed, int size)
 	}
 	return (1);
 }
+
+/*
+** Find the node with the lowest f score in the open queue,
+** take it out of the queue and return it.
+** If the goal is in the open queu,
+** it put it in the set as the path and return NULL.
+** If the open queue is empty it return NULL
+*/
 
 t_node *get_next_step(t_set *set)
 {
