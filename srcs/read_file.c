@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/15 17:25:33 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/15 18:09:46 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		is_comment(char *line)
 	return (0);
 }
 
+/*
 static int	get_n(char *input)
 {
 	int	i;
@@ -40,6 +41,7 @@ static int	get_n(char *input)
 		dprintf(2, "EH\n");
 	return (n);
 }
+*/
 
 static int	check_puzzle(int *puzzle, int n)
 {
@@ -63,9 +65,10 @@ static int *get_puzzle(char **tab, int i, int n)
 	int		*puzzle;
 
 	k = 0;
-	if (!(puzzle = (int*)malloc(sizeof(int) * (n * n) + 1)))
+	if (!(puzzle = (int*)malloc(sizeof(int) * (n * n))))
 		return (NULL);
 	i++;
+	puzzle = ft_memset(puzzle, 0, n*n+1);
 	while (tab[i])
 	{
 		j = 0;
@@ -82,14 +85,14 @@ static int *get_puzzle(char **tab, int i, int n)
 		}
 		i++;
 	}
-	if (!check_puzzle(puzzle, n))
-		return (0);
 	k = 0;
-	while (puzzle[k])
+	while (puzzle[k] != 0)
 	{
-		dprintf(2, "%d,", puzzle[k]);
+		dprintf(2, "%d %d,", puzzle[k], k);
 		k++;
 	}
+	if (!check_puzzle(puzzle, n))
+		return (0);
 	return (puzzle);
 }
 
@@ -129,21 +132,27 @@ int			read_file(int fd)
 		free(line);
 		return_failure("Empty map.", NULL);
 	}
-	if ((tab = ft_strsplit(line, '\n')) == NULL)
+	if ((tab = ft_strsplit(line, ' ')) == NULL)
 	{
 		free(line);
-		return_failure("Could mot read input.", NULL);
+		return_failure("Could not read input.", NULL);
 	}
 	while (tab[++i])
 	{
-		if (tab[i][0] == '#' && tab[i][0] == '\n')
-			continue ;
+	//	dprintf(2, "%s\n", tab[i]);
+		if (ft_isdigit(tab[i][0]))
+			dprintf(2, " IS %s\n", tab[i]);
+		//	continue ;
+		/*
 		if (n == 0)
 		{
 			n = get_n(tab[i]);
 			j = i;
 		}
+		*/
 	}
+	n = 3;
+	j = 2;
 	if (n < 3)
 		return_failure("N needs to be at least 3x3.", NULL);
 	if (!get_puzzle(tab, j, n))
