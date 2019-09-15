@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/09 17:09:56 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/15 17:25:33 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,22 @@ static int	get_n(char *input)
 	return (n);
 }
 
-static int *check_puzzle(char **tab, int i, int n)
+static int	check_puzzle(int *puzzle, int n)
+{
+	int	i;
+	int size;
+
+	i = -1;
+	size = n*n;
+	while (puzzle[++i])
+	{
+		if (puzzle[i] > size - 1 || puzzle[i] < -1)
+			return (0);
+	}
+	return (1);
+}
+
+static int *get_puzzle(char **tab, int i, int n)
 {
 	int		j;
 	int		k;
@@ -67,8 +82,10 @@ static int *check_puzzle(char **tab, int i, int n)
 		}
 		i++;
 	}
+	if (!check_puzzle(puzzle, n))
+		return (0);
 	k = 0;
-	while (k < n*n)
+	while (puzzle[k])
 	{
 		dprintf(2, "%d,", puzzle[k]);
 		k++;
@@ -127,9 +144,9 @@ int			read_file(int fd)
 			j = i;
 		}
 	}
-	if (n < 2)
+	if (n < 3)
 		return_failure("N needs to be at least 3x3.", NULL);
-	if (!check_puzzle(tab, j, n))
+	if (!get_puzzle(tab, j, n))
 		return (0);
 	return (1);
 }
