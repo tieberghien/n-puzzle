@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/12 19:04:28 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/17 17:41:03 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int (*g_heuristic[3])(int *current, int *goal, int n) =
 void init_set(t_set *set, int *puzzle, int size, int heuristic, t_node **current)
 {
 	set->goal = get_goal(size);
-	print_puzzle(set->goal, size);
 	set->size = size;
 	set->heuristic = heuristic;
+	set->open_size = 0;
+	set->closed_size = 0;
 	*current = ft_malloc_check(sizeof(t_node));
 	current[0]->puzzle = puzzle;
 	current[0]->g_score = 0;
@@ -41,18 +42,20 @@ void init_set(t_set *set, int *puzzle, int size, int heuristic, t_node **current
 void add_to_list(int *puzzle, t_node *current, t_set *set)
 {
 	t_node *new;
+	int h;
 
-	if (!in_closed(puzzle, set->closed, set->size))
+	h = (*g_heuristic[set->heuristic])(puzzle, set->goal, set->size);
+
+	if (!in_queue(puzzle, set->closed, set->size) && !in_queue(puzzle, set->open, set->size))
 	{
 		new = ft_malloc_check(sizeof(t_node));
 		new->g_score = current->g_score + 1;
-		new->h_score = (*g_heuristic[set->heuristic])(puzzle, set->goal, set->size);
+		new->h_score = h;
 		new->from = current;
 		new->puzzle = copy_puzzle(puzzle, set->size);
 		new->next = set->open;
 		set->open = new;
 		set->open_size += 1;
-		set->open_max_size = set->open_size > set->open_max_size ? set->open_size : set->open_max_size;
 	}
 }
 
@@ -65,7 +68,7 @@ void set_new_puzzle(int replaced, t_node *current, t_set *set)
 	int i;
 
 	puzzle[set->size * set->size] = 0;
-	i= 0;
+	i = 0;
 	while (current->puzzle[i])
 	{
 		if (current->puzzle[i] == replaced)
@@ -106,23 +109,27 @@ void a_star(int *puzzle, int size, int heuristic)
 	t_set set;
 	t_node *current;
 
+	printf("\n");
 	init_set(&set, puzzle, size, heuristic, &current);
-	while (current)
-	{
-		fill_open(&set, current);
-		current->next = set.closed;
-		set.closed = current;
-		current = get_next_step(&set);
-	}
-
-	printf("path:\n");
-	while (set.path)
-	{
-		print_puzzle(set.path->puzzle, size);
-		printf("\n");
-		set.path = set.path->from;
-	}
-	printf("end\n");
+	print_puzzle(set.goal, size);
+	printf("\nis solvable : %i\n", is_solvable(puzzle, set.goal, size));
+	// while (current)
+	// {
+	// 	fill_open(&set, current);
+	// 	current->next = set.closed;
+	// 	set.closed = current;
+	// 	current = get_next_step(&set);
+	// 	set.closed_size += 1;
+	// }
+	// printf("time complexity: %i, size complexity: + %i = %i\n", set.closed_size, set.open_size, set.open_size + set.closed_size);
+	// printf("path:\n");
+	// while (set.path)
+	// {
+	// 	print_puzzle(set.path->puzzle, size);
+	// 	printf("\n");
+	// 	set.path = set.path->from;
+	// }
+	// printf("end\n");
 	// print_end(set); // <----  TO DO void print_end(set) : print the result
 	// free_all(set);  // <---- TO DO 	void free_all(set)  : free all list, pointer etc.. of the set
 }

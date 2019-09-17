@@ -1,16 +1,21 @@
 #include "../includes/n_puzzle.h"
 
-int main(void)
+int main(int ac, char **av)
 {
 
-	int input[27] = {5,
-					 24, 4, 1, 11, 5,
-					 3, 18, 9, 20, 19,
-					 10, 15, 23, 12, 17,
-					 13, 21, 22, -1, 6,
-					 2, 16, 8, 14, 7, 0};
+	int input[ac + 1];
+	int size = atoi(av[ac - 1]);
+	int big_size = size * size;
 
-	a_star(input, 5, 0);
+	int i = 0;
+	while (i < big_size)
+	{
+		input[i] = atoi(av[i + 1]);
+		i++;
+	}
+	input[i] = 0;
+	print_puzzle(input, size);
+	a_star(input, size, 0);
 
 	return 0;
 }

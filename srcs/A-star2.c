@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:38:08 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/12 18:41:09 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/17 16:30:54 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 ** Check if a configurtion of the n Puzzle is present in the closed list
 */
 
-int in_closed(int *puzzle, t_node *closed, int size)
+int in_queue(int *puzzle, t_node *queue, int size)
 {
 	t_node *cursor;
 
-	cursor = closed;
+	cursor = queue;
 	while (cursor)
 	{
 		if (!ft_memcmp(puzzle, cursor->puzzle, size * size * sizeof(int) + sizeof(int)))
@@ -77,6 +77,7 @@ t_node *get_next_step(t_set *set)
 
 	if (next)
 	{
+		set->open_size -= 1;
 		if (before_next)
 			before_next->next = next->next;
 		else
@@ -84,7 +85,6 @@ t_node *get_next_step(t_set *set)
 	}
 	return (next);
 }
-
 
 /*
 ** increment or decrement the coordinates in the right direction
