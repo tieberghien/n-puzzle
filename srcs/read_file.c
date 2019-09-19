@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 15:51:33 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:07:16 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int *get_puzzle(char **tab, int i, int n)
 			puzzle[k] = ft_atoi(tab[i]);
 			if (puzzle[k] == 0)
 				puzzle[k] = -1;
-			dprintf(2, "%d\n", puzzle[k]);
 			k++;
 		}
 		i++;
@@ -86,7 +85,7 @@ char		*get_input(int fd)
 	return (cmd);
 }
 
-int			read_file(int fd)
+int			*read_file(int fd, int **tmp)
 {
 	int		i;
 	int		j;
@@ -117,9 +116,11 @@ int			read_file(int fd)
 			break ;
 		}
 	}
+	free(line);
 	if (n < 3)
 		return_failure("N needs to be at least 3x3.", NULL);
-	if (!get_puzzle(tab, j, n))
+	if (!(*tmp = get_puzzle(tab, j, n)))
 		return (0);
-	return (1);
+	double_free(tab);
+	return (*tmp);
 }

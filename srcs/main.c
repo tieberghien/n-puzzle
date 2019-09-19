@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 13:52:09 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:06:03 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	return_failure(char *str, char *op)
 int		main(int ac, char **av)
 {
 	int		fd;
+	int		*tab;
 
+	tab = NULL;
 	if (ac < 2)
 		return_failure(USAGE, NULL);
 	if ((fd = open(av[1], O_RDONLY)) == -1)
@@ -35,11 +37,13 @@ int		main(int ac, char **av)
 		ft_putchar_fd('\n', 2);
 		return (-1);
 	}
-	if (!read_file(fd))
+	if (!read_file(fd, &tab))
 	{
 		ft_putstr_fd("SYNTAX ERROR\n", 2);
 		return (-1);
 	}
 	close(fd);
+	free(tab);
+	while (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 15:46:38 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:58:40 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_set
 int				linear_conflict_manhattan(int *current, int *goal, int n);
 int				manhatan(int *current, int *goal, int n);
 int				hamming(int *current, int *goal, int n);
-int				read_file(int fd);
+int				*read_file(int fd, int **puzzle);
 void			get_coord(int place, int size, int *puzzle, int *x, int *y);
 t_node			*get_next_step(t_set *set);
 int				in_queue(int *puzzle, t_node *queue, int size);
