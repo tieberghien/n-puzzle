@@ -6,26 +6,22 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 14:36:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/17 17:59:29 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 14:35:24 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/n_puzzle.h"
 
-void get_coord(int num, int size, int *puzzle, int *x, int *y)
+int get_blank_pos(int *puzzle)
 {
 	int i;
 
 	i = 0;
-	while (puzzle[i] && puzzle[i] != num)
+	while (puzzle[i] > 0)
 		i++;
-
-	if (i == size * size)
-	{
+	if (!puzzle[i])
 		printf("error !!\n");
-	}
-	*x = i % size;
-	*y = i / size;
+	return (i);
 }
 
 void print_puzzle(int *puzzle, int size)
@@ -62,41 +58,43 @@ int *copy_puzzle(int *puzzle, int size)
 	return (new);
 }
 
-int is_solvable(int *puzzle, int *goal, int size)
+int inversion_count(int *tab)
 {
 	int inversion;
 	int i;
 	int j;
-	int goal_pos[size * size + 1];
-	int blank_pos;
 
 	i = 0;
 	inversion = 0;
-	while (goal[i])
+	while (tab[i])
 	{
-		goal_pos[goal[i] == -1 ? 0 : goal[i]] = i;
-		i++;
-	}
-	i = 0;
-	while (puzzle[i])
-	{
-		if (puzzle[i] != -1)
+		if (tab[i] != -1)
 		{
 			j = i + 1;
-			while (puzzle[j])
+			while (tab[j])
 			{
-				if (puzzle[j] != -1 && goal_pos[puzzle[j]] < goal_pos[puzzle[i]])
+				if (tab[j] != -1 && tab[i] > tab[j])
 					inversion++;
 				j++;
 			}
 		}
-		else
-			blank_pos = i;
 		i++;
 	}
-	printf("inversion: %i, blank_pos: %i, blank row: %i", inversion, blank_pos, size - blank_pos / size);
-	if (size % 2 != 0)
-		return inversion % 2 == 0;
-	else
-		return (size - blank_pos / size) % 2 != inversion % 2;
+	return (inversion);
+}
+
+int is_solvable(int *puzzle, int *goal, int size)
+{
+	int inv_puz;
+	int inv_goal;
+
+	inv_puz = inversion_count(puzzle);
+	inv_goal = inversion_count(goal);
+	printf("inversion puzzle: %i, inversion goal: %i\n", inv_puz, inv_goal);
+	if (size % 2 == 0)
+	{
+		inv_puz += get_blank_pos(puzzle);
+		inv_goal += get_blank_pos(goal);
+	}
+	return (inv_puz % 2 == inv_goal % 2);
 }

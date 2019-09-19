@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/17 17:41:03 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 14:27:01 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,12 @@ void set_new_puzzle(int replaced, t_node *current, t_set *set)
 */
 void fill_open(t_set *set, t_node *current)
 {
+	int blank_pos;
 	int coord[2];
 
-	get_coord(-1, set->size, current->puzzle, &coord[0], &coord[1]);
+	blank_pos = get_blank_pos(current->puzzle);
+	coord[0] = blank_pos % set->size;
+	coord[1] = blank_pos / set->size;
 	if (coord[0] + 1 < set->size)
 		set_new_puzzle(current->puzzle[coord[0] + 1 + coord[1] * set->size], current, set);
 	if (coord[0] - 1 >= 0)
