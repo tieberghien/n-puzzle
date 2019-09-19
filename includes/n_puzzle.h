@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 16:12:03 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:01:49 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ int *copy_puzzle(int *puzzle, int size);
 int is_solvable(int *puzzle, int *goal, int size);
 t_node *new_node(t_node *current, int *puzzle, t_set *set);
 int is_solution(int *puzzle, t_node *current, t_set *set);
+void push(t_node *new, t_set *set);
 #endif

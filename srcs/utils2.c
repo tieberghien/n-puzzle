@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:15 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 16:17:18 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:00:59 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,33 @@ int is_solution(int *puzzle, t_node *current, t_set *set)
 		return (1);
 	}
 	return (0);
+}
+
+void push(t_node *new, t_set *set)
+{
+	t_node *cursor;
+	t_node *last;
+
+	cursor = set->open;
+	if (!cursor)
+		set->open = new;
+	else
+	{
+		while (cursor)
+		{
+			if (cursor->g_score + cursor->h_score >= new->h_score + new->g_score)
+			{
+				if (last)
+					last->next = new;
+				else
+					set->open = new;
+				new->next = cursor;
+				break;
+			}
+			last = cursor;
+			cursor = cursor->next;
+		}
+		if (!cursor)
+			last->next = new;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 16:17:29 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:10:28 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,7 @@ void add_to_list(int *puzzle, t_node *current, t_set *set)
 		if (!in_queue(puzzle, set->closed, set->size) && !in_queue(puzzle, set->open, set->size))
 		{
 			new = new_node(current, puzzle, set);
-			cursor = set->open;
-			if (!cursor)
-				set->open = new;
-			else
-			{
-				while (cursor)
-				{
-					if (cursor->g_score + cursor->h_score >= new->h_score + new->g_score)
-					{
-						if (last)
-							last->next = new;
-						else
-							set->open = new;
-						new->next = cursor;
-						break;
-					}
-					last = cursor;
-					cursor = cursor->next;
-				}
-				if (!cursor)
-					last->next = new;
-			}
+			push(new, set);
 		}
 	}
 }
