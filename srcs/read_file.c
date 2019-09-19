@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 16:07:16 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:21:55 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char		*get_input(int fd)
 	return (cmd);
 }
 
-int			*read_file(int fd, int **tmp)
+int			read_file(int fd, int **tmp)
 {
 	int		i;
 	int		j;
@@ -122,5 +122,5 @@ int			*read_file(int fd, int **tmp)
 	if (!(*tmp = get_puzzle(tab, j, n)))
 		return (0);
 	double_free(tab);
-	return (*tmp);
+	return (n);
 }

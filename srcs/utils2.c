@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:15 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 17:00:59 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:56:40 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void push(t_node *new, t_set *set)
 	t_node *last;
 
 	cursor = set->open;
+	last = NULL;
 	if (!cursor)
 		set->open = new;
 	else

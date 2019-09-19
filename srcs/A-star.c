@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 17:10:28 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:24:53 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void init_set(t_set *set, int *puzzle, int size, int heuristic, t_node **current
 void add_to_list(int *puzzle, t_node *current, t_set *set)
 {
 	t_node *new;
-	t_node *cursor;
 	t_node *last;
 
 	last = NULL;

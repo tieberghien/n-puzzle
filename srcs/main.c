@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 16:20:51 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:34:01 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		main(int ac, char **av)
 {
 	int		fd;
 	int		*tab;
+	int n;
 
 	tab = NULL;
 	if (ac < 2)
@@ -37,11 +38,14 @@ int		main(int ac, char **av)
 		ft_putchar_fd('\n', 2);
 		return (-1);
 	}
-	if (!read_file(fd, &tab))
+	if (!(n = read_file(fd, &tab)))
 	{
 		ft_putstr_fd("SYNTAX ERROR\n", 2);
 		return (-1);
 	}
+	printf("n: %i\n", n);
+	print_puzzle(tab, n);
+	a_star(tab, n, 0);
 	close(fd);
 	free(tab);
 	return (0);

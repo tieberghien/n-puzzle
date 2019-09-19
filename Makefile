@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: etieberg <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 12:25:25 by etieberg          #+#    #+#              #
-#    Updated: 2019/09/19 16:04:13 by etieberg         ###   ########.fr        #
+#    Updated: 2019/09/19 17:36:49 by tmerli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,12 @@ NAME			=	solver
 
 SRC				=	main.c		\
 					read_file.c	\
-					ft_split.c
+					ft_split.c \
+					A-star.c \
+					A-star2.c \
+					heuristic.c \
+					utils.c \
+					utils2.c \
 
 OBJ_NAME		=	$(SRC:.c=.o)
 
@@ -24,7 +29,7 @@ OBJ_PATH		=	objs/
 OBJ				=	$(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra #-g3 -fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra -g3 -fsanitize=address
 LDFLAGS			=	-Llibft -lft
 
 INC_DIR			=	includes
