@@ -4,7 +4,6 @@ import sys
 import argparse
 import random
 
-<<<<<<< HEAD
 def make_puzzle(s, solvable, iterations):
     def swap_empty(p):
         idx = p.index(0)
@@ -95,7 +94,6 @@ for y in range(s):
     for x in range(s):
         print "%s" % (str(puzzle[x + y*s]).rjust(w)),
     print
-=======
 
 def print_puzzle(s, puzzle):
 	w = len(str(s*s))
@@ -193,4 +191,3 @@ if __name__ == "__main__":
 	print "# This puzzle is %s" % ("solvable" if solv else "unsolvable")
 	print "%d" % s
 	print_puzzle(s, puzzle)
->>>>>>> origin/tmerli
