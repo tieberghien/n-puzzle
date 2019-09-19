@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 16:06:03 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:20:51 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ int		main(int ac, char **av)
 	}
 	close(fd);
 	free(tab);
-	while (1);
 	return (0);
 }
