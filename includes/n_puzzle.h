@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 17:01:49 by tmerli           ###   ########.fr       */
+/*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
+/*   Updated: 2019/09/19 17:14:44 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef N_PUZZLE_H
 #define N_PUZZLE_H
@@ -17,7 +18,7 @@
 #include "../libft/includes/libft.h"
 #include <stdio.h>
 
-typedef struct s_node
+typedef struct	s_node
 {
 	int g_score;
 	int h_score;
@@ -37,6 +38,9 @@ typedef struct s_set
 	int size;
 	int heuristic;
 } t_set;
+
+int read_file(int fd);
+void    return_failure(char *str, char *op);
 
 int linear_conflict_manhattan(int *current, int *goal, int n);
 int manhatan(int *current, int *goal, int n);

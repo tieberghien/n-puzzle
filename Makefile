@@ -6,7 +6,7 @@
 #    By: etieberg <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 12:25:25 by etieberg          #+#    #+#              #
-#    Updated: 2019/09/08 21:07:35 by etieberg         ###   ########.fr        #
+#    Updated: 2019/09/09 14:39:50 by etieberg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_PATH		=	objs/
 OBJ				=	$(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -fsanitize=address #-03 -g
+CFLAGS			=	-Wall -Werror -Wextra -g3 -fsanitize=address #-03 -g
 LDFLAGS			=	-Llibft -lft
 
 INC_DIR			=	includes
