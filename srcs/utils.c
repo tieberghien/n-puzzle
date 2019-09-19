@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 14:36:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 12:48:27 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/19 12:55:53 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	invertion_count(int *tab)
 	inversion = 0;
 	while (tab[i])
 	{
-		if (tab[i] != 0 && i != 0 && i > tab[i])
+		if (tab[i] != -1 && i != 0 && i > tab[i])
 			inversion++;
 		i++;
 	}

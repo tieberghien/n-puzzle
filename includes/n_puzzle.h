@@ -6,11 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:28 by etieberg          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/09/09 14:50:10 by etieberg         ###   ########.fr       */
-=======
-/*   Updated: 2019/09/17 15:07:57 by tmerli           ###   ########.fr       */
->>>>>>> origin/tmerli
+/*   Updated: 2019/09/19 15:46:38 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +17,7 @@
 # include "../libft/includes/libft.h"
 # include <stdio.h>
 
-<<<<<<< HEAD
-/*
-typedef struct	s_puzzle
-=======
 typedef struct	s_node
->>>>>>> origin/tmerli
 {
 	int				g_score;
 	int				h_score;
@@ -37,18 +28,6 @@ typedef struct	s_node
 
 typedef struct	s_set
 {
-<<<<<<< HEAD
-	t_node		*open;
-	t_node		*closed;
-	size_t		exp_order;  // expansion order (g)
-	size_t		value;	// heuristic value / estimation cost (h)
-	size_t		cost;  // g + h = cost-so-far (f)
-}				t_sets;
-*/
-
-int read_file(int fd);
-void    return_failure(char *str, char *op);
-=======
 	t_node	*open;
 	t_node	*closed;
 	t_node	*path;
@@ -58,7 +37,6 @@ void    return_failure(char *str, char *op);
 	int		size;
 	int		heuristic;
 }				t_set;
->>>>>>> origin/tmerli
 
 int				linear_conflict_manhattan(int *current, int *goal, int n);
 int				manhatan(int *current, int *goal, int n);
@@ -72,4 +50,7 @@ void			a_star(int *puzzle, int size, int heuristic);
 void print_puzzle(int *puzzle, int size);
 int *copy_puzzle(int *puzzle, int size);
 int is_solvable(int *puzzle, int *goal, int size);
+void    return_failure(char *str, char *op);
+char        **ft_split(char const *s);
+
 #endif

@@ -6,14 +6,15 @@
 #    By: etieberg <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 12:25:25 by etieberg          #+#    #+#              #
-#    Updated: 2019/09/09 14:39:50 by etieberg         ###   ########.fr        #
+#    Updated: 2019/09/19 15:46:17 by etieberg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	solver
 
 SRC				=	main.c		\
-					read_file.c
+					read_file.c	\
+					ft_split.c
 
 OBJ_NAME		=	$(SRC:.c=.o)
 
