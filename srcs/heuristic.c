@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:47:50 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/12 19:04:51 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 12:26:58 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	hamming(int *current, int *goal, int n)
 	int j;
 	int h;
 
+	(void)n;
 	i = 0;
 	h = 0;
 	while (current[i])

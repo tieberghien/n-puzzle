@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 14:36:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/17 17:59:29 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 12:48:27 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,40 @@ int *copy_puzzle(int *puzzle, int size)
 	return (new);
 }
 
+int	invertion_count(int *tab)
+{
+	int i;
+	int j;
+	int inversion;
+
+	i = 0;
+	j = 0;
+	inversion = 0;
+	while (tab[i])
+	{
+		if (tab[i] != 0 && i != 0 && i > tab[i])
+			inversion++;
+		i++;
+	}
+	return (inversion);
+}
+
+int is_solvable(int *puzzle, int *goal, int size)
+{
+	int	inv_puz;
+	int inv_goal;
+
+	inv_puz = invertion_count(puzzle);
+	inv_goal = invertion_count(goal);
+	if (size % 2 == 0)
+	{
+		inv_puz += puzzle[0];
+		inv_goal += goal[0];
+	}
+	return (inv_puz % 2 == inv_goal % 2);
+}
+
+/*
 int is_solvable(int *puzzle, int *goal, int size)
 {
 	int inversion;
@@ -100,3 +134,4 @@ int is_solvable(int *puzzle, int *goal, int size)
 	else
 		return (size - blank_pos / size) % 2 != inversion % 2;
 }
+*/
