@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:21:19 by etieberg          #+#    #+#             */
-/*   Updated: 2018/11/06 15:42:05 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/09 15:55:50 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ void				double_free(char **av);
 char				**ft_stradd(char **array, char *content, int count);
 int					get_next_line(const int fd, char **line);
 char				*ft_get_input(void);
+int					ft_abs(int nb);
+int					ft_in_interval(int nb, int n1, int n2);
 
 #endif
