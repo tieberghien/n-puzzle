@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 14:36:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 14:35:24 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 14:43:36 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int is_solvable(int *puzzle, int *goal, int size)
 
 	inv_puz = inversion_count(puzzle);
 	inv_goal = inversion_count(goal);
-	printf("inversion puzzle: %i, inversion goal: %i\n", inv_puz, inv_goal);
 	if (size % 2 == 0)
 	{
 		inv_puz += get_blank_pos(puzzle);

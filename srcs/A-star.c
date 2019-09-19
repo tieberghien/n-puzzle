@@ -6,14 +6,11 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 14:27:01 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/19 16:17:29 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/n_puzzle.h"
-
-int (*g_heuristic[3])(int *current, int *goal, int n) =
-	{linear_conflict_manhattan, manhatan, hamming};
 
 /*
 ** Initialize the set with the right value, mem allocation etc..
@@ -32,6 +29,7 @@ void init_set(t_set *set, int *puzzle, int size, int heuristic, t_node **current
 	current[0]->from = NULL;
 	set->closed = NULL;
 	set->open = NULL;
+	set->path = NULL;
 }
 
 /*
@@ -42,20 +40,38 @@ void init_set(t_set *set, int *puzzle, int size, int heuristic, t_node **current
 void add_to_list(int *puzzle, t_node *current, t_set *set)
 {
 	t_node *new;
-	int h;
+	t_node *cursor;
+	t_node *last;
 
-	h = (*g_heuristic[set->heuristic])(puzzle, set->goal, set->size);
-
-	if (!in_queue(puzzle, set->closed, set->size) && !in_queue(puzzle, set->open, set->size))
+	last = NULL;
+	if (!is_solution(puzzle, current, set) && !set->path)
 	{
-		new = ft_malloc_check(sizeof(t_node));
-		new->g_score = current->g_score + 1;
-		new->h_score = h;
-		new->from = current;
-		new->puzzle = copy_puzzle(puzzle, set->size);
-		new->next = set->open;
-		set->open = new;
-		set->open_size += 1;
+		if (!in_queue(puzzle, set->closed, set->size) && !in_queue(puzzle, set->open, set->size))
+		{
+			new = new_node(current, puzzle, set);
+			cursor = set->open;
+			if (!cursor)
+				set->open = new;
+			else
+			{
+				while (cursor)
+				{
+					if (cursor->g_score + cursor->h_score >= new->h_score + new->g_score)
+					{
+						if (last)
+							last->next = new;
+						else
+							set->open = new;
+						new->next = cursor;
+						break;
+					}
+					last = cursor;
+					cursor = cursor->next;
+				}
+				if (!cursor)
+					last->next = new;
+			}
+		}
 	}
 }
 
@@ -112,26 +128,30 @@ void a_star(int *puzzle, int size, int heuristic)
 	t_set set;
 	t_node *current;
 
-	printf("\n");
 	init_set(&set, puzzle, size, heuristic, &current);
-	print_puzzle(set.goal, size);
-	printf("\nis solvable : %i\n", is_solvable(puzzle, set.goal, size));
-	// while (current)
-	// {
-	// 	fill_open(&set, current);
-	// 	current->next = set.closed;
-	// 	set.closed = current;
-	// 	current = get_next_step(&set);
-	// 	set.closed_size += 1;
-	// }
-	// printf("time complexity: %i, size complexity: + %i = %i\n", set.closed_size, set.open_size, set.open_size + set.closed_size);
-	// printf("path:\n");
-	// while (set.path)
-	// {
-	// 	print_puzzle(set.path->puzzle, size);
-	// 	printf("\n");
-	// 	set.path = set.path->from;
-	// }
+	if (is_solvable(puzzle, set.goal, size))
+	{
+		while (!set.path)
+		{
+			fill_open(&set, current);
+			current->next = set.closed;
+			set.closed = current;
+			current = set.open;
+			set.open = current->next;
+			set.closed_size += 1;
+			set.open_size -= 1;
+		}
+		printf("time complexity: %i, size complexity: + %i = %i\n", set.closed_size, set.open_size, set.open_size + set.closed_size);
+		printf("path:\n");
+		while (set.path)
+		{
+			print_puzzle(set.path->puzzle, size);
+			printf("\n");
+			set.path = set.path->from;
+		}
+	}
+	else
+		printf("puzzle not solvable, time and size complexity : 0\n");
 	// printf("end\n");
 	// print_end(set); // <----  TO DO void print_end(set) : print the result
 	// free_all(set);  // <---- TO DO 	void free_all(set)  : free all list, pointer etc.. of the set
