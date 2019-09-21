@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/21 16:06:10 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/21 16:30:12 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define N_PUZZLE_H
 #define USAGE "Usage: ./solver <sourcefile> {MANHATTAN|HAMMING|L_CONFLICT}"
 #include <fcntl.h>
+#include <unistd.h>
 #include "../libft/includes/libft.h"
 #include <stdio.h>
 
