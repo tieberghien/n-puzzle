@@ -6,12 +6,11 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 17:24:08 by etieberg          #+#    #+#             */
-/*   Updated: 2018/03/21 13:48:41 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/21 13:26:50 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
-#include <stdio.h>
 
 int		ft_arraylen(char **s)
 {

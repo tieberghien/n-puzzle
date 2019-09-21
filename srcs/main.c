@@ -6,19 +6,18 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 17:34:01 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/21 12:09:07 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "n_puzzle.h"
 
-void	return_failure(char *str, char *op)
+void	return_failure(char *str, void *op)
 {
 	ft_putstr_fd(str, 2);
 	if (op != NULL)
-		ft_putendl_fd(op, 2);
-	else
-		ft_putchar_fd('\n', 2);
+		free(op);
+	ft_putchar_fd('\n', 2);
 	exit(0);
 }
 

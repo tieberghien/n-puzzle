@@ -6,22 +6,11 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/21 12:21:55 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/21 13:44:10 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "n_puzzle.h"
-
-int			is_comment(char *line)
-{
-	int i;
-
-	i = -1;
-	while (ft_isprint(line[++i]))
-		if (line[i] == '#' || !line[i])
-			return (1);
-	return (0);
-}
 
 static int	check_puzzle(int *puzzle, int n)
 {
@@ -39,16 +28,34 @@ static int	check_puzzle(int *puzzle, int n)
 	return (1);
 }
 
+static int	check_tab(char **tab)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (tab[i])
+	{
+		if (ft_isdigit(*tab[i]))
+			count++;
+		i++;	
+	}
+	return (count);
+}
+
 static int	*get_puzzle(char **tab, int i, int n)
 {
 	int		k;
 	int		*puzzle;
 
 	k = 0;
+	if (check_tab(tab + i + 1) > (n * n))
+		return (0);
 	if (!(puzzle = (int*)malloc(sizeof(int) * (n * n) + sizeof(int))))
 		return (NULL);
 	i++;
-	while (tab[i] && k < (n * n) + 1)
+	while (tab[i] && k < (n * n))
 	{
 		if (ft_isdigit(*tab[i]))
 		{

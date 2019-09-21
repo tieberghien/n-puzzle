@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 17:22:51 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/21 12:18:39 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct s_set
 	int heuristic;
 } t_set;
 
-void return_failure(char *str, char *op);
-
 int linear_conflict_manhattan(int *current, int *goal, int n);
 int manhatan(int *current, int *goal, int n);
 int hamming(int *current, int *goal, int n);
@@ -66,7 +64,7 @@ void a_star(int *puzzle, int size, int heuristic);
 void print_puzzle(int *puzzle, int size);
 int *copy_puzzle(int *puzzle, int size);
 int is_solvable(int *puzzle, int *goal, int size);
-void return_failure(char *str, char *op);
+void return_failure(char *str, void *op);
 char **ft_split(char const *s);
 
 #endif
