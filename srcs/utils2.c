@@ -6,14 +6,14 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:15 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 17:56:40 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/21 15:26:05 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/n_puzzle.h"
 
-int (*g_heuristic[3])(int *current, int *goal, int n) =
-	{linear_conflict_manhattan, manhatan, hamming};
+int (*g_heuristic[4])(int *current, int *goal, int n) =
+	{linear_conflict_manhattan, manhatan, hamming, euclidian};
 
 t_node *new_node(t_node *current, int *puzzle, t_set *set)
 {
