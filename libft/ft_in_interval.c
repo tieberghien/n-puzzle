@@ -6,16 +6,15 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 02:19:20 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/09 15:54:57 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/21 13:49:24 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-int ft_in_interval(int nb, int n1, int n2)
+int	ft_in_interval(int nb, int n1, int n2)
 {
-    if ((nb >= n1 && nb <= n2) || (nb <= n1 && nb >= n2))
-        return 1;
-
-    return 0;
+	if ((nb >= n1 && nb <= n2) || (nb <= n1 && nb >= n2))
+		return (1);
+	return (0);
 }
