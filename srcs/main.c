@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/21 12:09:07 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/21 16:06:08 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,22 @@ void	return_failure(char *str, void *op)
 	exit(0);
 }
 
+static int	get_heuristic(char *str)
+{
+	if (!(ft_strncmp(str, "MANHATTAN", 9)))
+		return (0);
+	else if (!(ft_strncmp(str, "HAMMING", 7)))
+		return (1);
+	else if (!(ft_strncmp(str, "L_CONFLICT", 10)))
+		return (2);
+	return (-1);
+}
+
 int		main(int ac, char **av)
 {
 	int		fd;
 	int		*tab;
+	int heuristic;
 	int n;
 
 	tab = NULL;
@@ -42,9 +54,11 @@ int		main(int ac, char **av)
 		ft_putstr_fd("SYNTAX ERROR\n", 2);
 		return (-1);
 	}
-	printf("n: %i\n", n);
-	print_puzzle(tab, n);
-	a_star(tab, n, 0);
+	heuristic = 0;
+	if (ac == 3)
+		if ((heuristic = get_heuristic(av[2])) == -1)
+			return_failure(USAGE, NULL);
+	a_star(tab, n, heuristic);
 	close(fd);
 	free(tab);
 	return (0);

@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/21 12:18:39 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/21 16:06:10 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef N_PUZZLE_H
 #define N_PUZZLE_H
-#define USAGE "Usage: ./solver <sourcefile>"
+#define USAGE "Usage: ./solver <sourcefile> {MANHATTAN|HAMMING|L_CONFLICT}"
 #include <fcntl.h>
 #include "../libft/includes/libft.h"
 #include <stdio.h>
@@ -41,6 +41,7 @@ typedef struct s_set
 int linear_conflict_manhattan(int *current, int *goal, int n);
 int manhatan(int *current, int *goal, int n);
 int hamming(int *current, int *goal, int n);
+int euclidian(int *current, int *goal, int n);
 int get_blank_pos(int *puzzle);
 t_node *get_next_step(t_set *set);
 int in_queue(int *puzzle, t_node *queue, int size);
