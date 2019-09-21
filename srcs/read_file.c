@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/19 17:21:55 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/21 12:21:55 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "n_puzzle.h"
 
-int		is_comment(char *line)
+int			is_comment(char *line)
 {
 	int i;
 
@@ -29,7 +29,7 @@ static int	check_puzzle(int *puzzle, int n)
 	int size;
 
 	i = 0;
-	size = n*n;
+	size = n * n;
 	while (puzzle[i])
 	{
 		if (puzzle[i] > size - 1 || puzzle[i] < -1)
@@ -39,7 +39,7 @@ static int	check_puzzle(int *puzzle, int n)
 	return (1);
 }
 
-static int *get_puzzle(char **tab, int i, int n)
+static int	*get_puzzle(char **tab, int i, int n)
 {
 	int		k;
 	int		*puzzle;
@@ -88,38 +88,27 @@ char		*get_input(int fd)
 int			read_file(int fd, int **tmp)
 {
 	int		i;
-	int		j;
 	int		n;
 	char	*line;
 	char	**tab;
 
 	i = -1;
-	j = 0;
 	n = 0;
 	line = get_input(fd);
 	if (line && *line == 0)
-	{
-		free(line);
-		return_failure("Empty map.", NULL);
-	}
+		return_failure("Empty map.", line);
 	if ((tab = ft_split(line)) == NULL)
-	{
-		free(line);
-		return_failure("Could not read input.", NULL);
-	}
+		return_failure("Could not read input.", line);
 	while (tab[++i])
-	{
 		if (n == 0 && ft_isdigit(*tab[i]))
 		{
 			n = ft_atoi(tab[i]);
-			j = i;
 			break ;
 		}
-	}
 	free(line);
 	if (n < 3)
 		return_failure("N needs to be at least 3x3.", NULL);
-	if (!(*tmp = get_puzzle(tab, j, n)))
+	if (!(*tmp = get_puzzle(tab, i, n)))
 		return (0);
 	double_free(tab);
 	return (n);
