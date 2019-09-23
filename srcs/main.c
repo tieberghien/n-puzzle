@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/21 16:45:06 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/23 16:29:44 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,30 @@ void	return_failure(char *str, void *op)
 	exit(0);
 }
 
-static int	get_heuristic(int ac, char **av)
+static int	get_heuristic(int ac, char **av, int *flag, int *algo)
 {
 	int ch;
 
-	while ((ch = getopt (ac, av, "mhl:")) != -1)
+	*flag = 0;
+	*algo = 0;
+	while ((ch = getopt(ac, av, "mhle:gu")) != -1)
 	{
 		if (ch == 'm')
-			return (0);
-		if (ch == 'h')
-			return (1);
-		if (ch == 'l')
-			return (2);
+			*flag = 0;
+		else if (ch == 'h')
+			*flag = 1;
+		else if (ch == 'l')
+			*flag = 2;
+		else if (ch == 'e')
+			*flag = 3;
+		if (ch == 'g')
+			*algo = 1;
 		break ;
 	}
-	return (-1);
+	dprintf(2, "%d\n", optind);
+//	while (optind++<ac)
+//		dprintf(2, "%d\n", optind);
+	return (optind);
 }
 
 int		main(int ac, char **av)
@@ -42,16 +51,14 @@ int		main(int ac, char **av)
 	int		fd;
 	int		*tab;
 	int flag;
-	int n;
+	int	algo;
 	int i;
 
 	i = 1;
 	tab = NULL;
 	if (ac < 2)
 		return_failure(USAGE, NULL);
-	if ((flag = get_heuristic(ac, av)) != -1)
-		i++;
-	flag = (flag == -1) ? 0 : flag;
+	i = get_heuristic(ac, av, &flag, &algo);
 	if ((fd = open(av[i], O_RDONLY)) == -1)
 	{
 		ft_putstr_fd("Can't read source file ", 2);
@@ -59,12 +66,12 @@ int		main(int ac, char **av)
 		ft_putchar_fd('\n', 2);
 		return (-1);
 	}
-	if (!(n = read_file(fd, &tab)))
+	if (!(i = read_file(fd, &tab)))
 	{
 		ft_putstr_fd("SYNTAX ERROR\n", 2);
 		return (-1);
 	}
-	a_star(tab, n, flag);
+	a_star(tab, i, flag);
 	close(fd);
 	free(tab);
 	return (0);
