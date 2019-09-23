@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:47:50 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/21 16:05:08 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/23 13:29:39 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	find_goal(int current, int *goal)
 			return (i);
 		i++;
 	}
-	//printf("error heuristic\n");
+	printf("error heuristic\n");
 	return (0);
 }
 
@@ -40,10 +40,10 @@ int	euclidian(int *current, int *goal, int n)
 	h = 0;
 	while (current[i])
 	{
-		while (current[i] != -1)
+		if (current[i] != -1)
 		{
 			j = find_goal(current[i], goal);
-			h = (int)sqrt((double)((i % n - j % n) * (i % n - j % n)) + ((i / n - j / n) * (i / n - j / n)));
+			h += (int)sqrt(((j % n - i % n) * (j % n - i % n)) + ((j / n - i / n) * (j / n - i / n)));
 		}
 		i++;
 	}
