@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/21 16:30:12 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/23 13:05:35 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef N_PUZZLE_H
 #define N_PUZZLE_H
-#define USAGE "Usage: ./solver <sourcefile> {MANHATTAN|HAMMING|L_CONFLICT}"
+#define USAGE "Usage: ./solver [-mhl] [sourcefile]"
 #include <fcntl.h>
 #include <unistd.h>
 #include "../libft/includes/libft.h"
