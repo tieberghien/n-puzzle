@@ -6,7 +6,7 @@
 /*   By: etieberg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:46:02 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/21 13:47:57 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:32:30 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,18 @@ char		**ft_split(char const *s)
 	int		count;
 
 	i = 0;
-	if (!s)
-		return (NULL);
 	count = ft_count_words(s);
 	if (!(tab = (char**)malloc(sizeof(char*) * (count + 1))))
 		return (NULL);
 	while (i < count)
 	{
 		j = 0;
+		while (*s && (*s == '#' && *(s + j) != '\n'))
+			j++;
 		while (*s && (*s == ' ' || *s == '\n'))
 			s++;
-		while (*(s + j) && (*(s + j) != ' ' && *(s + j) != '\n'))
+		while (*(s + j) && (*(s + j) != ' ' && *(s + j) != '\n'
+			&& *(s + j) != '#'))
 			j++;
 		*(tab++) = ft_strsub(s, 0, j);
 		s = s + j;

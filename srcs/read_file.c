@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/21 16:29:41 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:32:40 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ static int	check_puzzle(int *puzzle, int n)
 			return (0);
 		i++;
 	}
+	if (i < size)
+		return (0);
 	return (1);
 }
 
-/*
 static int	check_tab(char **tab)
 {
 	int i;
@@ -40,11 +41,10 @@ static int	check_tab(char **tab)
 	{
 		if (ft_isdigit(*tab[i]))
 			count++;
-		i++;	
+		i++;
 	}
 	return (count);
 }
-*/
 
 static int	*get_puzzle(char **tab, int i, int n)
 {
@@ -52,8 +52,8 @@ static int	*get_puzzle(char **tab, int i, int n)
 	int		*puzzle;
 
 	k = 0;
-//	if (check_tab(tab + i + 1) > (n * n))
-//		return (0);
+	if (check_tab(tab + i + 1) > (n * n))
+		return (0);
 	if (!(puzzle = (int*)malloc(sizeof(int) * (n * n) + sizeof(int))))
 		return (NULL);
 	i++;
