@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/24 16:04:27 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:51:36 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static int	get_heuristic(int ac, char **av, int *flag, int *algo)
 {
 	int ch;
 
-	*flag = 0;
-	*algo = 0;
 	while ((ch = getopt(ac, av, "mhle")) != -1)
 	{
 		if (ch == 'm')
@@ -44,6 +42,8 @@ static int	get_heuristic(int ac, char **av, int *flag, int *algo)
 			*algo = 1;
 		else if (ch == 'u')
 			*algo = 2;
+		else
+			return_failure("Invalid option.", NULL);
 		break ;
 	}
 	return (optind);
@@ -58,6 +58,8 @@ int			main(int ac, char **av)
 	int	i;
 
 	i = 1;
+	flag = 0;
+	algo = 0;
 	tab = NULL;
 	if (ac < 2)
 		return_failure(USAGE, NULL);
