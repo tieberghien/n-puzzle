@@ -6,7 +6,11 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/09/24 12:20:16 by etieberg         ###   ########.fr       */
+=======
+/*   Updated: 2019/09/23 14:17:04 by tmerli           ###   ########.fr       */
+>>>>>>> 420d6c091ded2dd3aeaaac00b0969b811d39340f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +72,13 @@ int *copy_puzzle(int *puzzle, int size);
 int is_solvable(int *puzzle, int *goal, int size);
 void return_failure(char *str, void *op);
 char **ft_split(char const *s);
+<<<<<<< HEAD
 int	astar_score(t_node *curr);
 int	greedy_score(t_node *curr);
 int	uniform_score(t_node *curr);
+=======
+void print_end(t_set *set);
+void free_all(t_set *set);
+>>>>>>> 420d6c091ded2dd3aeaaac00b0969b811d39340f
 
 #endif
