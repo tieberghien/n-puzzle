@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 14:36:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/23 13:49:01 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/24 14:07:55 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/n_puzzle.h"
+#include "n_puzzle.h"
 
-int get_blank_pos(int *puzzle)
+int		get_blank_pos(int *puzzle)
 {
 	int i;
 
@@ -24,7 +24,7 @@ int get_blank_pos(int *puzzle)
 	return (i);
 }
 
-void print_puzzle(int *puzzle, int size)
+void	print_puzzle(int *puzzle, int size)
 {
 	int x;
 	int y;
@@ -35,7 +35,8 @@ void print_puzzle(int *puzzle, int size)
 		x = 0;
 		while (x < size)
 		{
-			printf("%- 4i", puzzle[x + y * size] == -1 ? 0 : puzzle[x + y * size]);
+			printf("%- 4i", puzzle[x + y * size] == -1
+			? 0 : puzzle[x + y * size]);
 			x++;
 		}
 		printf("\n");
@@ -43,7 +44,7 @@ void print_puzzle(int *puzzle, int size)
 	}
 }
 
-int *copy_puzzle(int *puzzle, int size)
+int		*copy_puzzle(int *puzzle, int size)
 {
 	int i;
 	int *new;
@@ -58,7 +59,7 @@ int *copy_puzzle(int *puzzle, int size)
 	return (new);
 }
 
-int inversion_count(int *tab)
+int		inversion_count(int *tab)
 {
 	int inversion;
 	int i;
@@ -83,7 +84,7 @@ int inversion_count(int *tab)
 	return (inversion);
 }
 
-int is_solvable(int *puzzle, int *goal, int size)
+int		is_solvable(int *puzzle, int *goal, int size)
 {
 	int inv_puz;
 	int inv_goal;

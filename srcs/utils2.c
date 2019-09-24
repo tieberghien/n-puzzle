@@ -6,19 +6,18 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:15 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 12:22:36 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:23:12 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/n_puzzle.h"
+#include "n_puzzle.h"
 
-int (*g_heuristic[4])(int *current, int *goal, int n) =
-	{linear_conflict_manhattan, manhatan, hamming, euclidian};
+int	(*g_heuristic[4])(int *curr, int *goal, int n) = {linear_conflict_manhattan,
+	manhatan, hamming, euclidian};
 
-int (*g_algo[3])(t_node *curr) =
-	{astar_score, greedy_score, uniform_score};
+int	(*g_algo[3])(t_node *curr) = {astar_score, greedy_score, uniform_score};
 
-t_node *new_node(t_node *current, int *puzzle, t_set *set)
+t_node	*new_node(t_node *current, int *puzzle, t_set *set)
 {
 	t_node *new;
 
@@ -32,9 +31,10 @@ t_node *new_node(t_node *current, int *puzzle, t_set *set)
 	return (new);
 }
 
-int is_solution(int *puzzle, t_node *current, t_set *set)
+int		is_solution(int *puzzle, t_node *current, t_set *set)
 {
-	if (!ft_memcmp(set->goal, puzzle, set->size * set->size * sizeof(int) + sizeof(int)))
+	if (!ft_memcmp(set->goal, puzzle, set->size * set->size *
+				sizeof(int) + sizeof(int)))
 	{
 		set->path = new_node(current, puzzle, set);
 		set->path->next = set->closed;
@@ -46,32 +46,31 @@ int is_solution(int *puzzle, t_node *current, t_set *set)
 	return (0);
 }
 
-void push(t_node *new, t_set *set)
+void	push(t_node *new, t_set *set)
 {
-	t_node *cursor;
+	t_node *curs;
 	t_node *last;
 
-	cursor = set->open;
+	curs = set->open;
 	last = NULL;
-	if (!cursor)
-		set->open = new;
-	else
+	set->open = !curs ? new : set->open;
+	if (curs)
 	{
-		while (cursor)
+		while (curs)
 		{
-			if (cursor->g_score + cursor->h_score >= new->h_score + new->g_score)
+			if (curs->g_score + curs->h_score >= new->h_score + new->g_score)
 			{
 				if (last)
 					last->next = new;
 				else
 					set->open = new;
-				new->next = cursor;
-				break;
+				new->next = curs;
+				break ;
 			}
-			last = cursor;
-			cursor = cursor->next;
+			last = curs;
+			curs = curs->next;
 		}
-		if (!cursor)
+		if (!curs)
 			last->next = new;
 	}
 }
