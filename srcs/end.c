@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 13:56:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:35:06 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/24 17:30:33 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,14 @@ void	free_list(t_node *list)
 	while (list)
 	{
 		tmp = list->next;
-		free(list->puzzle);
-		free(list);
+		free_node(list);
 		list = tmp;
 	}
 }
 
 void	free_all(t_set *set, t_node *current)
 {
-	free_list(set->closed);
+	hashmap_free(set->closed);
 	free_list(set->open);
 	if (current)
 	{

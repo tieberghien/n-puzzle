@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:36:17 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/24 17:46:55 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include "libft.h"
 # include <stdio.h>
+# include "hashmap.h"
 
 typedef struct		s_node
 {
@@ -31,7 +32,7 @@ typedef struct		s_node
 typedef struct		s_set
 {
 	t_node			*open;
-	t_node			*closed;
+	map_t           closed;
 	t_node			*path;
 	int				*goal;
 	int				open_size;
@@ -76,5 +77,7 @@ int					uniform_score(t_node *curr);
 void				print_end(t_set *set);
 void				free_all(t_set *set, t_node *current);
 void				free_list(t_node *node);
+void				free_node(t_node *node);
+char				*get_key(int *puzzle);
 
 #endif

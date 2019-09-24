@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:15 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:35:05 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/24 17:58:03 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,10 @@ void	push(t_node *new, t_set *set)
 		if (!curs)
 			last->next = new;
 	}
+}
+
+void	free_node(t_node *node)
+{
+	free(node->puzzle);
+	free(node);
 }
