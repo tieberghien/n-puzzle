@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 15:53:14 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:04:38 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	fill_open(t_set *set, t_node *current)
 ** contain the whole algorithm
 */
 
-void	a_star(int *puzzle, int size, int heuristic)
+void	a_star(int *puzzle, int size, int heuristic, int algo)
 {
 	t_set	set;
 	t_node	*current;

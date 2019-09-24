@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 15:51:43 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:04:55 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int					get_blank_pos(int *puzzle);
 t_node				*get_next_step(t_set *set);
 int					in_queue(int *puzzle, t_node *queue, int size);
 int					*get_goal(int size);
-void				a_star(int *puzzle, int size, int heuristic);
+void				a_star(int *puzzle, int size, int heuristic, int algo);
 void				print_puzzle(int *puzzle, int size);
 int					*copy_puzzle(int *puzzle, int size);
 int					is_solvable(int *puzzle, int *goal, int size);
@@ -64,7 +64,6 @@ void				get_coord(int place, int size, int *puzzle, int *x, int *y);
 t_node				*get_next_step(t_set *set);
 int					in_queue(int *puzzle, t_node *queue, int size);
 int					*get_goal(int size);
-void				a_star(int *puzzle, int size, int heuristic);
 void				print_puzzle(int *puzzle, int size);
 int					*copy_puzzle(int *puzzle, int size);
 int					is_solvable(int *puzzle, int *goal, int size);

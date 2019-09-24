@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/24 15:54:09 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:04:27 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			main(int ac, char **av)
 		return_failure("Can't read source file.", NULL);
 	if (!(i = read_file(fd, &tab)))
 		return_failure("Invalid puzzle.", NULL);
-	a_star(tab, i, flag);
+	a_star(tab, i, flag, algo);
 	close(fd);
 	return (0);
 }
