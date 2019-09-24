@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:56:09 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/23 14:32:40 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 11:40:33 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int			read_file(int fd, int **tmp)
 	n = 0;
 	line = get_input(fd);
 	if (line && *line == 0)
-		return_failure("Empty map.", line);
+		return_failure("Empty file.", line);
 	if ((tab = ft_split(line)) == NULL)
 		return_failure("Could not read input.", line);
 	while (tab[++i])
