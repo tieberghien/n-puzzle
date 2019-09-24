@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 13:56:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/23 14:54:48 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/24 15:56:08 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "n_puzzle.h"
 
-void reverse_path(t_set *set)
+void	reverse_path(t_set *set)
 {
 	t_node *prev;
 	t_node *cur;
@@ -21,7 +21,6 @@ void reverse_path(t_set *set)
 	cur = set->path;
 	prev = NULL;
 	next = NULL;
-
 	while (cur)
 	{
 		next = cur->from;
@@ -32,19 +31,19 @@ void reverse_path(t_set *set)
 	set->path = prev;
 }
 
-void print_end(t_set *set)
+void	print_end(t_set *set)
 {
 	int i;
 
 	i = 1;
 	if (set->path)
 	{
-		printf("time complexity: %i, size complexity: + %i = %i\n", set->closed_size, set->open_size, set->open_size + set->closed_size);
+		printf("time complexity: %i, size complexity: + %i = %i\n",
+		set->closed_size, set->open_size, set->open_size + set->closed_size);
 		printf("path:\n");
 		reverse_path(set);
 		while (set->path)
 		{
-
 			print_puzzle(set->path->puzzle, set->size);
 			printf("\n");
 			set->path = set->path->from;
@@ -56,23 +55,22 @@ void print_end(t_set *set)
 		printf("puzzle not solvable, time and size complexity : 0\n");
 }
 
-void free_list(t_node *list)
+void	free_list(t_node *list)
 {
 	t_node *tmp;
 
 	while (list)
 	{
 		tmp = list->next;
-		if (list->puzzle)
-			free(list->puzzle);
+		free(list->puzzle);
 		free(list);
 		list = tmp;
 	}
 }
 
-void free_all(t_set *set)
+void	free_all(t_set *set)
 {
 	free_list(set->closed);
-	printf("test\n");
 	free_list(set->open);
+	free(set->goal);
 }

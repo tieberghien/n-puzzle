@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 14:30:20 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:51:43 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ int					greedy_score(t_node *curr);
 int					uniform_score(t_node *curr);
 void				print_end(t_set *set);
 void				free_all(t_set *set);
+void				free_list(t_node *node);
 
 #endif

@@ -6,13 +6,11 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:47:50 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/23 13:29:39 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:26:14 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/libft.h"
-#include "../includes/n_puzzle.h"
-#include <math.h>
+#include "n_puzzle.h"
 
 int	find_goal(int current, int *goal)
 {
@@ -21,33 +19,11 @@ int	find_goal(int current, int *goal)
 	i = 0;
 	while (goal[i])
 	{
-	//	printf("current: %i\n", current);
 		if (goal[i] == current)
 			return (i);
 		i++;
 	}
-	printf("error heuristic\n");
 	return (0);
-}
-
-int	euclidian(int *current, int *goal, int n)
-{
-	int i;
-	int j;
-	int h;
-
-	i = 0;
-	h = 0;
-	while (current[i])
-	{
-		if (current[i] != -1)
-		{
-			j = find_goal(current[i], goal);
-			h += (int)sqrt(((j % n - i % n) * (j % n - i % n)) + ((j / n - i / n) * (j / n - i / n)));
-		}
-		i++;
-	}
-	return (h);
 }
 
 int	hamming(int *current, int *goal, int n)

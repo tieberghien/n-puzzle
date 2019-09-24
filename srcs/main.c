@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/24 14:01:43 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:54:09 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ int			main(int ac, char **av)
 		return_failure("Invalid puzzle.", NULL);
 	a_star(tab, i, flag);
 	close(fd);
-	free(tab);
 	return (0);
 }
