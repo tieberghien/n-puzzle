@@ -6,7 +6,7 @@
 #    By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 12:25:25 by etieberg          #+#    #+#              #
-#    Updated: 2019/09/24 14:25:43 by etieberg         ###   ########.fr        #
+#    Updated: 2019/09/24 16:28:54 by etieberg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC				=	main.c		\
 					a_star.c \
 					a_star2.c \
 					heuristic.c \
+					linear_conflict.c	\
 					bonus_heuristic.c \
 					utils.c \
 					utils2.c \
