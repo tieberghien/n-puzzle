@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 14:03:53 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:53:14 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,9 @@ void	a_star(int *puzzle, int size, int heuristic)
 	}
 	print_end(&set);
 	free_all(&set);
+	if (current)
+	{
+		free(current);
+		free(current->puzzle);
+	}
 }
