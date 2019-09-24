@@ -6,7 +6,7 @@
 #    By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 12:25:25 by etieberg          #+#    #+#              #
-#    Updated: 2019/09/19 17:36:49 by tmerli           ###   ########.fr        #
+#    Updated: 2019/09/24 12:19:43 by etieberg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC				=	main.c		\
 					heuristic.c \
 					utils.c \
 					utils2.c \
+					f_score.c
 
 OBJ_NAME		=	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/23 13:05:35 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 12:20:16 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,8 @@ int *copy_puzzle(int *puzzle, int size);
 int is_solvable(int *puzzle, int *goal, int size);
 void return_failure(char *str, void *op);
 char **ft_split(char const *s);
+int	astar_score(t_node *curr);
+int	greedy_score(t_node *curr);
+int	uniform_score(t_node *curr);
 
 #endif
