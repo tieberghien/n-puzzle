@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:15 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 15:55:07 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:15:12 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ t_node	*new_node(t_node *current, int *puzzle, t_set *set)
 {
 	t_node *new;
 
-	if (!(new = (t_node*)malloc(sizeof(t_node))))
-		return (NULL);
-	new->g_score = current->g_score + 1;
-	new->h_score = (*g_heuristic[set->heuristic])(puzzle, set->goal, set->size);
+	new = ft_malloc_check(sizeof(t_node));
+	new->g_score = set->algo == 1 ? 0 : current->g_score + 1;
+	new->h_score = set->algo == 2 ? 0 : (*g_heuristic[set->heuristic])(puzzle, set->goal, set->size);
 	new->from = current;
 	new->puzzle = copy_puzzle(puzzle, set->size);
 	new->next = NULL;

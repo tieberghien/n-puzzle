@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A-star.c                                           :+:      :+:    :+:   */
+/*   a_star.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:04:38 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:12:55 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	a_star(int *puzzle, int size, int heuristic, int algo)
 
 	init_set(&set, puzzle, size, &current);
 	set.heuristic = heuristic;
+	set.algo = algo;
 	if (is_solvable(puzzle, set.goal, size))
 	{
 		while (!set.path)
@@ -131,10 +132,5 @@ void	a_star(int *puzzle, int size, int heuristic, int algo)
 		}
 	}
 	print_end(&set);
-	free_all(&set);
-	if (current)
-	{
-		free(current);
-		free(current->puzzle);
-	}
+	free_all(&set, current);
 }

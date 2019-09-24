@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 13:56:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 15:56:08 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:12:04 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,14 @@ void	free_list(t_node *list)
 	}
 }
 
-void	free_all(t_set *set)
+void	free_all(t_set *set, t_node *current)
 {
 	free_list(set->closed);
 	free_list(set->open);
+	if (current)
+	{
+		free(current);
+		free(current->puzzle);
+	}
 	free(set->goal);
 }
