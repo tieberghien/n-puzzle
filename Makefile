@@ -6,11 +6,7 @@
 #    By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 12:25:25 by etieberg          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2019/09/24 12:19:43 by etieberg         ###   ########.fr        #
-=======
-#    Updated: 2019/09/23 14:46:29 by tmerli           ###   ########.fr        #
->>>>>>> 420d6c091ded2dd3aeaaac00b0969b811d39340f
+#    Updated: 2019/09/24 14:25:43 by etieberg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +15,14 @@ NAME			=	solver
 SRC				=	main.c		\
 					read_file.c	\
 					ft_split.c \
-					A-star.c \
-					A-star2.c \
+					a_star.c \
+					a_star2.c \
 					heuristic.c \
+					bonus_heuristic.c \
 					utils.c \
 					utils2.c \
-<<<<<<< HEAD
-					f_score.c
-=======
-					end.c \
->>>>>>> 420d6c091ded2dd3aeaaac00b0969b811d39340f
+					f_score.c \
+					end.c 
 
 OBJ_NAME		=	$(SRC:.c=.o)
 
