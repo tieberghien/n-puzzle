@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/23 16:29:44 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/24 11:59:05 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "n_puzzle.h"
 
-void	return_failure(char *str, void *op)
+void		return_failure(char *str, void *op)
 {
 	ft_putendl_fd(str, 2);
 	if (op != NULL)
@@ -26,7 +26,7 @@ static int	get_heuristic(int ac, char **av, int *flag, int *algo)
 
 	*flag = 0;
 	*algo = 0;
-	while ((ch = getopt(ac, av, "mhle:gu")) != -1)
+	while ((ch = getopt(ac, av, "mhle")) != -1)
 	{
 		if (ch == 'm')
 			*flag = 0;
@@ -36,23 +36,26 @@ static int	get_heuristic(int ac, char **av, int *flag, int *algo)
 			*flag = 2;
 		else if (ch == 'e')
 			*flag = 3;
-		if (ch == 'g')
-			*algo = 1;
 		break ;
 	}
-	dprintf(2, "%d\n", optind);
-//	while (optind++<ac)
-//		dprintf(2, "%d\n", optind);
+	while ((ch = getopt(ac, av, "gu")) != -1)
+	{
+		if (ch == 'g')
+			*algo = 1;
+		else if (ch == 'u')
+			*algo = 2;
+		break ;
+	}
 	return (optind);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	int		fd;
-	int		*tab;
-	int flag;
+	int	fd;
+	int	*tab;
+	int	flag;
 	int	algo;
-	int i;
+	int	i;
 
 	i = 1;
 	tab = NULL;
@@ -60,17 +63,9 @@ int		main(int ac, char **av)
 		return_failure(USAGE, NULL);
 	i = get_heuristic(ac, av, &flag, &algo);
 	if ((fd = open(av[i], O_RDONLY)) == -1)
-	{
-		ft_putstr_fd("Can't read source file ", 2);
-		ft_putstr_fd(av[i], 2);
-		ft_putchar_fd('\n', 2);
-		return (-1);
-	}
+		return_failure("Can't read source file.", NULL);
 	if (!(i = read_file(fd, &tab)))
-	{
-		ft_putstr_fd("SYNTAX ERROR\n", 2);
-		return (-1);
-	}
+		return_failure("Invalid puzzle.", NULL);
 	a_star(tab, i, flag);
 	close(fd);
 	free(tab);
