@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/21 15:42:10 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:17:17 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,18 +119,7 @@ void a_star(int *puzzle, int size, int heuristic)
 			set.closed_size += 1;
 			set.open_size -= 1;
 		}
-		printf("time complexity: %i, size complexity: + %i = %i\n", set.closed_size, set.open_size, set.open_size + set.closed_size);
-		printf("path:\n");
-		while (set.path)
-		{
-			print_puzzle(set.path->puzzle, size);
-			printf("\n");
-			set.path = set.path->from;
-		}
 	}
-	else
-		printf("puzzle not solvable, time and size complexity : 0\n");
-	// printf("end\n");
-	// print_end(set); // <----  TO DO void print_end(set) : print the result
-	// free_all(set);  // <---- TO DO 	void free_all(set)  : free all list, pointer etc.. of the set
+	print_end(&set); // <----  TO DO void print_end(set) : print the result
+	free_all(&set);  // <---- TO DO 	void free_all(set)  : free all list, pointer etc.. of the set
 }

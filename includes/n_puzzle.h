@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/21 16:30:12 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:17:04 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int *copy_puzzle(int *puzzle, int size);
 int is_solvable(int *puzzle, int *goal, int size);
 void return_failure(char *str, void *op);
 char **ft_split(char const *s);
+void print_end(t_set *set);
+void free_all(t_set *set);
 
 #endif

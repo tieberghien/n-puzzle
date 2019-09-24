@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 14:36:00 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/19 17:19:40 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/23 13:49:01 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int is_solvable(int *puzzle, int *goal, int size)
 	inv_goal = inversion_count(goal);
 	if (size % 2 == 0)
 	{
-		inv_puz += get_blank_pos(puzzle);
-		inv_goal += get_blank_pos(goal);
+		inv_puz += get_blank_pos(puzzle) / size % 2;
+		inv_goal += get_blank_pos(goal) / size % 2;
 	}
 	return (inv_puz % 2 == inv_goal % 2);
 }

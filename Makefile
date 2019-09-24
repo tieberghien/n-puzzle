@@ -6,7 +6,7 @@
 #    By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 12:25:25 by etieberg          #+#    #+#              #
-#    Updated: 2019/09/19 17:36:49 by tmerli           ###   ########.fr        #
+#    Updated: 2019/09/23 14:46:29 by tmerli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC				=	main.c		\
 					heuristic.c \
 					utils.c \
 					utils2.c \
+					end.c \
 
 OBJ_NAME		=	$(SRC:.c=.o)
 
@@ -29,7 +30,7 @@ OBJ_PATH		=	objs/
 OBJ				=	$(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra #-g3 -fsanitize=address
 LDFLAGS			=	-Llibft -lft
 
 INC_DIR			=	includes
