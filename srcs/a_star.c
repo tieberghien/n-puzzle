@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 16:15:53 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 17:54:50 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ void	a_star(int *puzzle, int size, int heuristic, int algo)
 		{
 			fill_open(&set, current);
 			add_to_map(current->puzzle, &set);
-			// free(current->puzzle);
-			// free(current);
 			current->next = set.closed;
 			set.closed = current;
 			current = set.open;

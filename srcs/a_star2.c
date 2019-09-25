@@ -6,31 +6,11 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:38:08 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 17:49:33 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 17:57:19 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "n_puzzle.h"
-
-/*
-** Check if a configurtion of the n Puzzle is present in the closed list
-*/
-
-int		in_queue(int *puzzle, t_node *queue, int size)
-{
-	t_node *cursor;
-
-	cursor = queue;
-	while (cursor)
-	{
-		if (!ft_memcmp(puzzle, cursor->puzzle, size * size * sizeof(int)
-			+ sizeof(int)))
-			return (1);
-		cursor = cursor->next;
-	}
-	return (0);
-}
-
 
 /*
 ** Check if a configurtion of the n Puzzle is present in the closed hashmap
@@ -43,7 +23,6 @@ int		in_closed(int *puzzle, t_set *set)
 
 	key1 = hash1(puzzle);
 	key2 = hash2(puzzle);
-
 	if (((set->hashmap1[key1 / 8] >> key1 % 8) & 1) !=
 		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
 	{
@@ -52,7 +31,7 @@ int		in_closed(int *puzzle, t_set *set)
 	}
 	if ((set->hashmap1[key1 / 8] >> key1 % 8) & 1 &&
 		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
-			return (1);
+		return (1);
 	return (0);
 }
 
