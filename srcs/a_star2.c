@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:38:08 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 16:14:31 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 17:24:26 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		in_closed(int *puzzle, t_set *set)
 	int key2;
 
 	key1 = hash1(puzzle);
-	key2 = hash2(puzzle, set->size);
+	key2 = hash2(puzzle);
 
 	if (((set->hashmap1[key1 / 8] >> key1 % 8) & 1) !=
 		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
@@ -53,8 +53,11 @@ int		in_closed(int *puzzle, t_set *set)
 	if ((set->hashmap1[key1 / 8] >> key1 % 8) & 1 &&
 		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
 		{
-			if(!in_queue(puzzle, set->closed, set->size))
-				printf("ERROR\n");
+			// if(!in_queue(puzzle, set->closed, set->size))
+			// 	{
+			// 		// return 0;
+			// 		printf("ERROR\n");
+			// 	}
 			return 1;
 		}
 	return (0);
