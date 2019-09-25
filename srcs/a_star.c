@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 14:45:53 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 15:24:28 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,9 @@ void	a_star(int *puzzle, int size, int heuristic, int algo)
 		while (!set.path)
 		{
 			fill_open(&set, current);
+			add_to_map(current->puzzle, &set);
+			// free(current->puzzle);
+			// free(current);
 			current->next = set.closed;
 			set.closed = current;
 			current = set.open;
@@ -134,6 +137,7 @@ void	a_star(int *puzzle, int size, int heuristic, int algo)
 			set.open_size -= 1;
 		}
 	}
+	printf("collision : %i\n", set.collision);
 	print_end(&set);
-	free_all(&set, current);
+	// free_all(&set, current);
 }

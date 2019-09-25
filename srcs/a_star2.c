@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:38:08 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 14:56:08 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 15:29:24 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,21 @@ int		in_closed(int *puzzle, t_set *set)
 	int key2;
 
 	key1 = hash1(puzzle);
-	key2 = hash2(puzzle);
+	key2 = hash2(puzzle, set->size);
 
-	if ((set->hashmap1[key1 / 8] >> key1 % 8) & 1 !=
-		(set->hashmap2[key2 / 8] >> key2 % 8) & 1)
+	if (((set->hashmap1[key1 / 8] >> key1 % 8) & 1) !=
+		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
 	{
 		set->collision++;
 		return (0);
 	}
 	if ((set->hashmap1[key1 / 8] >> key1 % 8) & 1 &&
-		(set->hashmap2[key2 / 8] >> key2 % 8) & 1)
-		return 1;
+		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
+		{
+			// if(!in_queue(puzzle, set->closed, set->size))
+			// 	printf("DOUBLE COLLISION\n");
+			return 1;
+		}
 	return (0);
 }
 

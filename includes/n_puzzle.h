@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 14:58:30 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 15:05:11 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef N_PUZZLE_H
 # define N_PUZZLE_H
-# define USAGE "Usage: ./solver [-mhl] [sourcefile]"
+# define USAGE "Usage: ./solver [-mhle] [-gu] [sourcefile]"
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
@@ -76,15 +76,13 @@ int					*copy_puzzle(int *puzzle, int size);
 int					is_solvable(int *puzzle, int *goal, int size);
 void				return_failure(char *str, void *op);
 char				**ft_split(char const *s);
-int					astar_score(t_node *curr);
-int					greedy_score(t_node *curr);
-int					uniform_score(t_node *curr);
 void				print_end(t_set *set);
 void				free_all(t_set *set, t_node *current);
 void				free_list(t_node *node);
 int					in_closed(int *puzzle, t_set *set);
 void				add_to_map(int *puzzle, t_set *set);
 int					hash1(int *puzzle);
-int					hash2(int *puzzle);
+int					hash2(int *puzzle, int size);
+void    hash(int *puzzle, int n, int size, long long int *hash);
 
 #endif
