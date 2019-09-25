@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:27:15 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:04:15 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/25 14:15:49 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	(*g_heuristic[4])(int *curr, int *goal, int n) = {linear_conflict_manhattan,
 	manhatan, hamming, euclidian};
-
-int	(*g_algo[3])(t_node *curr) = {astar_score, greedy_score, uniform_score};
 
 t_node	*new_node(t_node *current, int *puzzle, t_set *set)
 {

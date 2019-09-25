@@ -6,13 +6,13 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:29:26 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/25 14:15:27 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef N_PUZZLE_H
 # define N_PUZZLE_H
-# define USAGE "Usage: ./solver [-mhl] [sourcefile]"
+# define USAGE "Usage: ./solver [-mhle] [-gu] [sourcefile]"
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
@@ -69,9 +69,6 @@ int					*copy_puzzle(int *puzzle, int size);
 int					is_solvable(int *puzzle, int *goal, int size);
 void				return_failure(char *str, void *op);
 char				**ft_split(char const *s);
-int					astar_score(t_node *curr);
-int					greedy_score(t_node *curr);
-int					uniform_score(t_node *curr);
 void				print_end(t_set *set);
 void				free_all(t_set *set);
 void				free_list(t_node *node);
