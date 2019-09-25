@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:36:17 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 14:58:30 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include "libft.h"
 # include <stdio.h>
+# define MAP_SIZE 2000000
 
 typedef struct		s_node
 {
@@ -39,7 +40,12 @@ typedef struct		s_set
 	int				size;
 	int				heuristic;
 	int				algo;
+	int				map_space;
+	char			*hashmap1;
+	char			*hashmap2;
+	int				collision;
 }					t_set;
+
 
 int					linear_conflict_manhattan(int *current, int *goal, int n);
 int					manhatan(int *current, int *goal, int n);
@@ -76,5 +82,9 @@ int					uniform_score(t_node *curr);
 void				print_end(t_set *set);
 void				free_all(t_set *set, t_node *current);
 void				free_list(t_node *node);
+int					in_closed(int *puzzle, t_set *set);
+void				add_to_map(int *puzzle, t_set *set);
+int					hash1(int *puzzle);
+int					hash2(int *puzzle);
 
 #endif

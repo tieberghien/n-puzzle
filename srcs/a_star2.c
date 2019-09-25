@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A-star2.c                                          :+:      :+:    :+:   */
+/*   a_star2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:38:08 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 14:06:50 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/25 14:56:08 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,31 @@ int		in_queue(int *puzzle, t_node *queue, int size)
 			return (1);
 		cursor = cursor->next;
 	}
+	return (0);
+}
+
+
+/*
+** Check if a configurtion of the n Puzzle is present in the closed hashmap
+*/
+
+int		in_closed(int *puzzle, t_set *set)
+{
+	int key1;
+	int key2;
+
+	key1 = hash1(puzzle);
+	key2 = hash2(puzzle);
+
+	if ((set->hashmap1[key1 / 8] >> key1 % 8) & 1 !=
+		(set->hashmap2[key2 / 8] >> key2 % 8) & 1)
+	{
+		set->collision++;
+		return (0);
+	}
+	if ((set->hashmap1[key1 / 8] >> key1 % 8) & 1 &&
+		(set->hashmap2[key2 / 8] >> key2 % 8) & 1)
+		return 1;
 	return (0);
 }
 

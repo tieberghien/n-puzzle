@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/24 16:12:55 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 14:45:53 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	init_set(t_set *set, int *puzzle, int size, t_node **current)
 	set->closed = NULL;
 	set->open = NULL;
 	set->path = NULL;
+	set->hashmap1 = (char*)ft_memalloc(MAP_SIZE);
+	set->hashmap2 = (char*)ft_memalloc(MAP_SIZE);
+	set->map_space = MAP_SIZE;
+	set->collision = 0;
 }
 
 /*
@@ -46,8 +50,7 @@ void	add_to_list(int *puzzle, t_node *current, t_set *set)
 	last = NULL;
 	if (!is_solution(puzzle, current, set) && !set->path)
 	{
-		if (!in_queue(puzzle, set->closed, set->size)
-			&& !in_queue(puzzle, set->open, set->size))
+		if (!in_closed(puzzle, set))
 		{
 			new = new_node(current, puzzle, set);
 			push(new, set);
