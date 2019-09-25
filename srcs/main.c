@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/25 17:19:32 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/25 18:09:18 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	get_algo(int ac, char **av, int *algo)
 
 	while ((ch = getopt(ac, av, "gu")) != -1)
 	{
-		dprintf(2, "%d\n", optind);
 		if (ch == 'g')
 			*algo = 1;
 		else if (ch == 'u')
