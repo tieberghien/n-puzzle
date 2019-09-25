@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:19 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 17:54:50 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 18:05:51 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	init_set(t_set *set, int *puzzle, int size, t_node **current)
 	set->path = NULL;
 	set->hashmap1 = (char*)ft_memalloc(MAP_SIZE);
 	set->hashmap2 = (char*)ft_memalloc(MAP_SIZE);
-	set->map_space = MAP_SIZE;
-	set->collision = 0;
 }
 
 /*
@@ -135,7 +133,6 @@ void	a_star(int *puzzle, int size, int heuristic, int algo)
 			set.open_size -= 1;
 		}
 	}
-	printf("collision : %i\n", set.collision);
 	print_end(&set);
 	free_all(&set, current);
 }

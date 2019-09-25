@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 17:59:33 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 18:04:22 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ typedef struct		s_set
 	int				size;
 	int				heuristic;
 	int				algo;
-	int				map_space;
 	char			*hashmap1;
 	char			*hashmap2;
-	int				collision;
 }					t_set;
 
 int					linear_conflict_manhattan(int *current, int *goal, int n);

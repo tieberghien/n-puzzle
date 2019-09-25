@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 16:38:08 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 17:57:19 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 18:05:06 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int		in_closed(int *puzzle, t_set *set)
 
 	key1 = hash1(puzzle);
 	key2 = hash2(puzzle);
-	if (((set->hashmap1[key1 / 8] >> key1 % 8) & 1) !=
-		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
-	{
-		set->collision++;
-		return (0);
-	}
 	if ((set->hashmap1[key1 / 8] >> key1 % 8) & 1 &&
 		((set->hashmap2[key2 / 8] >> key2 % 8) & 1))
 		return (1);
