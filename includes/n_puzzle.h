@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 14:15:27 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/25 14:51:47 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ char				**ft_split(char const *s);
 void				print_end(t_set *set);
 void				free_all(t_set *set);
 void				free_list(t_node *node);
+void    hash(int *puzzle, int n, int size, long long int *hash);
 
 #endif
