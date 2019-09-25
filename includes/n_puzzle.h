@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 17:48:15 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 17:54:01 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ int					is_solvable(int *puzzle, int *goal, int size);
 void				return_failure(char *str, void *op);
 char				**ft_split(char const *s);
 void				print_end(t_set *set);
-void				free_all(t_set *set, t_node *current);
-void				free_list(t_node *node);
 int					in_closed(int *puzzle, t_set *set);
 void				add_to_map(int *puzzle, t_set *set);
 unsigned int		hash1(int *puzzle);
