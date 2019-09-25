@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 12:51:43 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 17:53:40 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 18:10:54 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,4 @@ void			add_to_map(int *puzzle, t_set *set)
 	key2 = hash2(puzzle);
 	set->hashmap1[key1 / 8] |= 1 << key1 % 8;
 	set->hashmap2[key2 / 8] |= 1 << key2 % 8;
-	set->map_space--;
 }
