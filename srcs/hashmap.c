@@ -6,15 +6,15 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 12:51:43 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 15:23:19 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 15:59:08 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "n_puzzle.h"
 
-int hash1(int *puzzle)
+unsigned int hash1(int *puzzle)
 {
-	int key;
+	unsigned int key;
 	int i;
 
 i = 0;
@@ -27,10 +27,10 @@ i = 0;
 		}
 		i++;
 	}
-	return (key % MAP_SIZE * 8);
+	return (key % (MAP_SIZE * 8));
 }
 
-int	hash2(int *puzzle,  int size)
+unsigned int	hash2(int *puzzle,  int size)
 {
 	int i;
 	int	j;
@@ -38,10 +38,10 @@ int	hash2(int *puzzle,  int size)
 	int n = size * size;
 	int curr;
 	int greater_nums;
-	long long hash = 0;
+	unsigned long long hash = 0;
 
 	i = -1;
-	while (++i < size)
+	while (++i < n)
 	{
 		hash += 1;
 		if (puzzle[i] == curr + 1)
@@ -51,7 +51,7 @@ int	hash2(int *puzzle,  int size)
 		}
 		else
 		{
-			greater_nums = n - puzzle[i];
+			greater_nums = size - puzzle[i];
 			j = puzzle[i] - 1;
 			k = 1;
 			while (j > curr)
@@ -63,7 +63,7 @@ int	hash2(int *puzzle,  int size)
 			curr = puzzle[i];
 		}
 	}
-	return ((int)hash % MAP_SIZE * 8);
+	return ((int)(hash % (MAP_SIZE * 8)));
 }
 
 
