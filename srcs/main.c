@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:57:49 by etieberg          #+#    #+#             */
-/*   Updated: 2019/09/24 16:51:36 by etieberg         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:19:32 by etieberg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,13 @@ void		return_failure(char *str, void *op)
 	exit(0);
 }
 
-static int	get_heuristic(int ac, char **av, int *flag, int *algo)
+static int	get_algo(int ac, char **av, int *algo)
 {
 	int ch;
 
-	while ((ch = getopt(ac, av, "mhle")) != -1)
-	{
-		if (ch == 'm')
-			*flag = 0;
-		else if (ch == 'h')
-			*flag = 1;
-		else if (ch == 'l')
-			*flag = 2;
-		else if (ch == 'e')
-			*flag = 3;
-		break ;
-	}
 	while ((ch = getopt(ac, av, "gu")) != -1)
 	{
+		dprintf(2, "%d\n", optind);
 		if (ch == 'g')
 			*algo = 1;
 		else if (ch == 'u')
@@ -47,6 +36,31 @@ static int	get_heuristic(int ac, char **av, int *flag, int *algo)
 		break ;
 	}
 	return (optind);
+}
+
+static int	get_heuristic(int ac, char **av, int *flag, int *algo)
+{
+	int ch;
+
+	while ((ch = getopt(ac, av, "mhlegu")) != -1)
+	{
+		if (ch == 'm')
+			*flag = 0;
+		else if (ch == 'h')
+			*flag = 1;
+		else if (ch == 'l')
+			*flag = 2;
+		else if (ch == 'e')
+			*flag = 3;
+		else if (ch == 'g')
+			*algo = 1;
+		else if (ch == 'u')
+			*algo = 2;
+		else
+			return_failure("Invalid option.", NULL);
+		break ;
+	}
+	return (get_algo(ac, av, algo));
 }
 
 int			main(int ac, char **av)
