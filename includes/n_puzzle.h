@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 17:13:32 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 16:56:55 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 17:48:15 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ int					in_closed(int *puzzle, t_set *set);
 void				add_to_map(int *puzzle, t_set *set);
 unsigned int		hash1(int *puzzle);
 unsigned int		hash2(int *puzzle);
-void    hash(int *puzzle, int n, int size, long long int *hash);
 
 #endif

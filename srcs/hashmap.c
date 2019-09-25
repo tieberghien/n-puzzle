@@ -6,7 +6,7 @@
 /*   By: tmerli <tmerli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 12:51:43 by tmerli            #+#    #+#             */
-/*   Updated: 2019/09/25 17:24:16 by tmerli           ###   ########.fr       */
+/*   Updated: 2019/09/25 17:50:58 by tmerli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ unsigned int	hash2(int *puzzle)
 	i = 0;
   while (puzzle[i])
     {
-    //   key = (key << 8) ^ g_crc32_table[((key >> 24) ^ puzzle[i]) & 255];
+      key = (key << 8) ^ g_crc32_table[((key >> 24) ^ puzzle[i]) & 255];
       i++;
     }
   return (key % (MAP_SIZE * 8));
